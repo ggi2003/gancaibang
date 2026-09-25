@@ -96,33 +96,28 @@
   .card {
     position: relative; display: flex; align-items: center; gap: calc(28 * var(--u));
     padding: calc(20 * var(--u)) calc(34 * var(--u));
-    border: 1px solid rgba(120,200,255,.42);
+    border: calc(1.5 * var(--u)) solid rgba(140,215,255,.55);
     border-radius: calc(14 * var(--u));
-    background: linear-gradient(155deg, rgba(44,96,168,.50) 0%, rgba(16,48,98,.55) 45%, rgba(9,28,60,.62) 100%);
-    box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0,5,20,.45),
-                inset 0 1px 0 rgba(170,235,255,.30);
+    background: linear-gradient(155deg, rgba(40,90,160,.38) 0%, rgba(14,44,92,.44) 50%, rgba(8,24,56,.52) 100%);
+    box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0,5,20,.42),
+                0 0 calc(18 * var(--u)) rgba(70,180,255,.22),
+                inset 0 1px 0 rgba(180,240,255,.28);
   }
-  /* 顶边青色高光线 */
+  /* 顶边中央青色高光线 */
   .card::before {
-    content: ""; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
-    background: linear-gradient(90deg, transparent, rgba(170,235,255,.85), transparent);
+    content: ""; position: absolute; top: 0; left: 25%; right: 25%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(180,240,255,.95), transparent);
+    box-shadow: 0 0 calc(8 * var(--u)) rgba(100,220,255,.8);
   }
   /* 底部中央青色凸耳 */
   .card::after {
     content: ""; position: absolute; bottom: calc(-6 * var(--u)); left: 50%;
     transform: translateX(-50%);
-    width: calc(70 * var(--u)); height: calc(10 * var(--u));
+    width: calc(72 * var(--u)); height: calc(10 * var(--u));
     border-radius: 0 0 calc(5 * var(--u)) calc(5 * var(--u));
     background: linear-gradient(180deg, #2aa8e8, #5fd8ff);
-    box-shadow: 0 0 calc(12 * var(--u)) rgba(80,200,255,.7);
+    box-shadow: 0 0 calc(12 * var(--u)) rgba(80,200,255,.75);
   }
-  /* 四角L形角标 */
-  .corner { position: absolute; width: calc(16 * var(--u)); height: calc(16 * var(--u));
-    border: calc(2.5 * var(--u)) solid #4fd0ff; }
-  .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; border-radius: calc(14 * var(--u)) 0 0 0; }
-  .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 calc(14 * var(--u)) 0 0; }
-  .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 calc(14 * var(--u)); }
-  .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; border-radius: 0 0 calc(14 * var(--u)) 0; }
 
   .card .icon { width: calc(78 * var(--u)); height: calc(78 * var(--u)); flex: none;
     display: grid; place-items: center;
@@ -227,8 +222,6 @@
 
     <div class="cards">
       <div class="card">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon">
           <svg viewBox="0 0 64 64" fill="none">
             <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
@@ -244,8 +237,6 @@
       </div>
 
       <div class="card">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon">
           <svg viewBox="0 0 64 64" fill="none">
             <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
@@ -261,8 +252,6 @@
       </div>
 
       <div class="card">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon">
           <svg viewBox="0 0 64 64" fill="none">
             <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
@@ -277,8 +266,6 @@
       </div>
 
       <div class="card">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon">
           <svg viewBox="0 0 64 64" fill="none">
             <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
@@ -293,8 +280,6 @@
       </div>
 
       <div class="card">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon">
           <svg viewBox="0 0 64 64" fill="none">
             <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
