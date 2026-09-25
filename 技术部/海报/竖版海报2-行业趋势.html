@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据行业趋势 · 数据要素进入高质量流通时代</title>
+<style>
+  /* 纯 CSS 自适应:--u = 设计稿 1px,随视口自动缩放,无需 JS */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #02060f;
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+  .stage { min-height: 100vh; display: grid; place-items: center; }
+
+  .poster {
+    --u: min(calc(100vw / 1080), calc(100vh / 1920));
+    position: relative;
+    width: calc(1080 * var(--u));
+    height: calc(1920 * var(--u));
+    background:
+      radial-gradient(ellipse 900px 520px at 50% -6%, rgba(35,120,210,.4), transparent 65%),
+      radial-gradient(ellipse 760px 520px at 108% 30%, rgba(255,150,50,.10), transparent 60%),
+      radial-gradient(ellipse 700px 500px at -8% 66%, rgba(20,80,160,.25), transparent 60%),
+      radial-gradient(ellipse 1000px 560px at 50% 108%, rgba(30,140,220,.26), transparent 62%),
+      linear-gradient(180deg, #04101f 0%, #071a36 42%, #04101f 76%, #030c1a 100%);
+    color: #eaf6ff; overflow: hidden;
+  }
+
+  .grid-floor {
+    position: absolute; left: -20%; right: -20%; bottom: 0; height: calc(360 * var(--u));
+    background:
+      linear-gradient(rgba(60,170,255,.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,170,255,.15) 1px, transparent 1px);
+    background-size: 100% calc(34 * var(--u)), calc(60 * var(--u)) 100%;
+    transform: perspective(500px) rotateX(58deg); transform-origin: bottom center;
+    mask-image: linear-gradient(180deg, transparent, #000 55%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 55%);
+    opacity: .5; pointer-events: none;
+  }
+  .grid-top {
+    position: absolute; inset: 0 0 auto 0; height: calc(300 * var(--u));
+    background:
+      linear-gradient(rgba(60,170,255,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,170,255,.07) 1px, transparent 1px);
+    background-size: calc(46 * var(--u)) calc(46 * var(--u));
+    mask-image: linear-gradient(180deg, #000, transparent);
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent); pointer-events: none;
+  }
+  .dots { position: absolute; inset: 0; pointer-events: none; }
+  .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
+    box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
+  .dots i.or { background: #ffb45a; box-shadow: 0 0 8px 1px rgba(255,170,70,.85); }
+
+  /* 右上橙色光弧 */
+  .arcs { position: absolute; right: calc(-180 * var(--u)); top: calc(180 * var(--u));
+    width: calc(620 * var(--u)); height: calc(620 * var(--u));
+    pointer-events: none; opacity: .8; }
+
+  /* 头部 */
+  .badge {
+    position: absolute; top: calc(60 * var(--u)); left: calc(64 * var(--u));
+    display: inline-flex; align-items: center; gap: calc(12 * var(--u));
+    padding: calc(13 * var(--u)) calc(28 * var(--u));
+    border: 1px solid rgba(90,190,255,.55); border-radius: calc(8 * var(--u));
+    background: linear-gradient(180deg, rgba(20,60,110,.6), rgba(10,30,60,.5));
+    font-size: calc(25 * var(--u)); letter-spacing: calc(4 * var(--u)); color: #bfe6ff;
+    box-shadow: 0 0 18px rgba(50,150,255,.25), inset 0 0 14px rgba(60,160,255,.15);
+  }
+  .badge::after { content: "›"; font-size: calc(30 * var(--u)); color: #4fd0ff; }
+
+  .title {
+    margin-top: calc(148 * var(--u)); text-align: center;
+    font-size: calc(72 * var(--u)); font-weight: 800; letter-spacing: calc(3 * var(--u));
+    text-shadow: 0 0 30px rgba(60,170,255,.45);
+  }
+  .title .cy { color: #45d9ff; }
+  .title .or { color: #ffa53e; }
+  .subtitle {
+    margin: calc(28 * var(--u)) auto 0; width: calc(900 * var(--u)); text-align: center;
+    font-size: calc(27 * var(--u)); letter-spacing: calc(2 * var(--u)); color: #a8cfee; line-height: 1.6;
+  }
+  .subtitle em { font-style: normal; color: #55dcff; }
+  .head-rule {
+    margin: calc(38 * var(--u)) auto 0; width: calc(860 * var(--u)); height: 2px; position: relative;
+    background: linear-gradient(90deg, transparent, rgba(70,190,255,.7), transparent);
+  }
+  .head-rule::after {
+    content: ""; position: absolute; left: 50%; top: calc(-4 * var(--u));
+    transform: translateX(-50%) rotate(45deg);
+    width: calc(10 * var(--u)); height: calc(10 * var(--u));
+    background: #45d9ff; box-shadow: 0 0 14px #45d9ff;
+  }
+
+  /* 趋势卡片 */
+  .cards { position: absolute; left: calc(64 * var(--u)); right: calc(64 * var(--u));
+    top: calc(520 * var(--u));
+    display: flex; flex-direction: column; gap: calc(20 * var(--u)); }
+  .card {
+    position: relative; display: flex; align-items: center; gap: calc(28 * var(--u));
+    padding: calc(20 * var(--u)) calc(34 * var(--u));
+    border: 1px solid rgba(80,180,255,.35);
+    border-radius: calc(16 * var(--u));
+    background: linear-gradient(135deg, rgba(16,48,92,.66), rgba(8,24,50,.6));
+    box-shadow: 0 0 24px rgba(30,120,220,.14), inset 0 0 28px rgba(40,130,230,.08);
+  }
+  .card::before, .card::after {
+    content: ""; position: absolute;
+    width: calc(22 * var(--u)); height: calc(22 * var(--u));
+    border-color: #4fd0ff; border-style: solid;
+  }
+  .card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px;
+    border-radius: calc(16 * var(--u)) 0 0 0; }
+  .card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0;
+    border-radius: 0 0 calc(16 * var(--u)) 0; }
+
+  .card .icon { width: calc(78 * var(--u)); height: calc(78 * var(--u)); flex: none;
+    display: grid; place-items: center;
+    filter: drop-shadow(0 0 10px rgba(70,200,255,.5)); }
+  .card .icon svg { width: 100%; height: 100%; }
+  .card .txt { flex: 1; }
+  .card h3 { font-size: calc(30 * var(--u)); font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .card h3 .no { color: #45d9ff; font-weight: 800; margin-right: calc(6 * var(--u)); }
+  .card h3 .bar { color: rgba(140,200,255,.5); font-weight: 400; margin: 0 calc(6 * var(--u)); }
+  .card h3 .hl { color: #45d9ff; }
+  .card h3 .hlo { color: #ffa53e; }
+  .card p { margin-top: calc(8 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.5;
+    color: #b9d9f2; letter-spacing: .5px; }
+  .card p b { color: #ffd9a8; font-weight: 600; }
+
+  /* 底部标语 */
+  .footer {
+    position: absolute; left: 0; right: 0; bottom: calc(96 * var(--u));
+    display: flex; align-items: center; justify-content: center; gap: calc(26 * var(--u));
+    padding: 0 calc(90 * var(--u));
+  }
+  .footer .line { flex: 1; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(70,190,255,.65)); }
+  .footer .line.r { background: linear-gradient(90deg, rgba(70,190,255,.65), transparent); }
+  .footer p { font-size: calc(36 * var(--u)); font-weight: 700; letter-spacing: 2px; white-space: nowrap;
+    text-shadow: 0 0 20px rgba(60,170,255,.5); }
+  .footer p .cy { color: #45d9ff; }
+  .brand { position: absolute; left: 0; right: 0; bottom: calc(46 * var(--u)); text-align: center;
+    font-size: calc(19 * var(--u)); letter-spacing: calc(8 * var(--u)); color: rgba(140,190,230,.55); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="poster">
+    <div class="grid-top"></div>
+    <div class="grid-floor"></div>
+
+    <!-- 右上橙色光弧(还原原图光轨) -->
+    <svg class="arcs" viewBox="0 0 620 620" fill="none">
+      <path d="M60 560 Q 300 420 560 60"  stroke="rgba(255,165,62,.5)"  stroke-width="2"/>
+      <path d="M20 500 Q 280 380 520 20"  stroke="rgba(255,165,62,.28)" stroke-width="1.5"/>
+      <path d="M120 600 Q 400 480 610 140" stroke="rgba(80,200,255,.35)" stroke-width="1.5"/>
+      <circle cx="470" cy="120" r="5" fill="#ffb45a"/>
+      <circle cx="540" cy="70"  r="4" fill="#ffd9a0"/>
+      <circle cx="380" cy="230" r="4" fill="#5fd8ff"/>
+      <circle cx="560" cy="180" r="3" fill="#ffb45a"/>
+    </svg>
+
+    <div class="dots">
+      <i style="left:8%;  top:11%; width:calc(5*var(--u)); height:calc(5*var(--u));"></i>
+      <i style="left:16%; top:26%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+      <i class="or" style="left:90%; top:9%;  width:calc(4*var(--u)); height:calc(4*var(--u));"></i>
+      <i style="left:94%; top:24%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+      <i style="left:5%;  top:50%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+      <i class="or" style="left:95%; top:62%; width:calc(5*var(--u)); height:calc(5*var(--u)); opacity:.6;"></i>
+      <i style="left:4%;  top:78%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+      <i style="left:96%; top:84%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+      <i style="left:55%; top:4.5%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+      <i class="or" style="left:75%; top:17%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.7;"></i>
+    </div>
+
+    <div class="badge">数据行业趋势</div>
+
+    <h1 class="title">数据要素进入<span class="cy">高质量</span><span class="or">流通</span>时代</h1>
+    <p class="subtitle">从数据资源建设,走向可信流通、资产化运营与<em>模数协同</em></p>
+    <div class="head-rule"></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
+            <path d="M32 16l12 6.5-12 6.5-12-6.5L32 16z" stroke="#7fe0ff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+            <path d="M20 30l12 6.5 12-6.5" stroke="#7fe0ff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+            <path d="M20 38l12 6.5 12-6.5" stroke="#7fe0ff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h3><span class="no">趋势一</span><span class="bar">|</span>AI 重塑<span class="hl">数据治理</span></h3>
+          <p>大模型参与清洗规则、元数据识别、智能质检,治理从人工规则走向人机协同</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
+            <circle cx="32" cy="27" r="7" stroke="#7fe0ff" stroke-width="2.2" fill="none"/>
+            <path d="M32 34v10M26 44h12" stroke="#7fe0ff" stroke-width="2.2" stroke-linecap="round"/>
+            <path d="M32 14v4M44 20l-3 3M20 20l3 3" stroke="#7fe0ff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h3><span class="no">趋势二</span><span class="bar">|</span>可信流通成为<span class="hl">基础设施</span></h3>
+          <p>隐私计算、可信数据空间推动原始数据不出域,<b>数据可用不可见</b></p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
+            <path d="M32 14l14 8v14l-14 8-14-8V22l14-8z" stroke="#7fe0ff" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+            <path d="M32 14v14M32 28l14-6M32 28L18 22" stroke="#7fe0ff" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h3><span class="no">趋势三</span><span class="bar">|</span>数据产品与<span class="hlo">词元化计量</span></h3>
+          <p>交易标的从原始数据集转向数据产品、API 服务、词元调用与合成数据</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
+            <path d="M18 44V32M28 44V24M38 44V28M48 44V18" stroke="#7fe0ff" stroke-width="2.6" stroke-linecap="round"/>
+            <path d="M16 48h32" stroke="#7fe0ff" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h3><span class="no">趋势四</span><span class="bar">|</span>数据资产<span class="hl">入表深化</span></h3>
+          <p>合规加工的数据资源进入资产化管理,推动资源、资产、资本三级跃迁</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg viewBox="0 0 64 64" fill="none">
+            <polygon points="32,3 57,17 57,47 32,61 7,47 7,17" stroke="#4fd0ff" stroke-width="2.5" fill="rgba(40,140,230,.12)"/>
+            <rect x="20" y="16" width="24" height="32" rx="2.5" stroke="#7fe0ff" stroke-width="2.2" fill="none"/>
+            <path d="M25 25h14M25 32h14M25 39h9" stroke="#7fe0ff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M38 40l3 3 6-7" stroke="#ffd9a0" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="txt">
+          <h3><span class="no">趋势五</span><span class="bar">|</span>行业高质量数据集<span class="hlo">紧缺</span></h3>
+          <p>垂直行业数据清洗、增强、标注与质检能力,成为 AI 时代核心供给能力</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="line"></div>
+      <p>判断趋势,先筑牢<span class="cy">质量与合规底座</span></p>
+      <div class="line r"></div>
+    </div>
+    <div class="brand">DATA TRENDS · HIGH-QUALITY CIRCULATION</div>
+  </div>
+</div>
+</body>
+</html>

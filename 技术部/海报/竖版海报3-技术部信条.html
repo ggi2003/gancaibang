@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术部 · 精治数据 可信交易 赋能要素</title>
+<style>
+  /* 纯 CSS 自适应:--u = 设计稿 1px,随视口自动缩放,无需 JS */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #02060f;
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+  .stage { min-height: 100vh; display: grid; place-items: center; }
+
+  .poster {
+    --u: min(calc(100vw / 1080), calc(100vh / 1920));
+    position: relative;
+    width: calc(1080 * var(--u));
+    height: calc(1920 * var(--u));
+    background:
+      radial-gradient(ellipse 900px 520px at 50% -6%, rgba(35,120,210,.36), transparent 65%),
+      radial-gradient(ellipse 700px 500px at -8% 45%, rgba(20,80,160,.22), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 108% 55%, rgba(20,80,160,.22), transparent 60%),
+      radial-gradient(ellipse 1000px 560px at 50% 108%, rgba(30,140,220,.26), transparent 62%),
+      linear-gradient(180deg, #04101f 0%, #061832 40%, #04101f 74%, #030c1a 100%);
+    color: #eaf6ff; overflow: hidden;
+  }
+
+  .grid-floor {
+    position: absolute; left: -20%; right: -20%; bottom: 0; height: calc(360 * var(--u));
+    background:
+      linear-gradient(rgba(60,170,255,.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,170,255,.15) 1px, transparent 1px);
+    background-size: 100% calc(34 * var(--u)), calc(60 * var(--u)) 100%;
+    transform: perspective(500px) rotateX(58deg); transform-origin: bottom center;
+    mask-image: linear-gradient(180deg, transparent, #000 55%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 55%);
+    opacity: .5; pointer-events: none;
+  }
+  .grid-top {
+    position: absolute; inset: 0 0 auto 0; height: calc(320 * var(--u));
+    background:
+      linear-gradient(rgba(60,170,255,.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(60,170,255,.07) 1px, transparent 1px);
+    background-size: calc(46 * var(--u)) calc(46 * var(--u));
+    mask-image: linear-gradient(180deg, #000, transparent);
+    -webkit-mask-image: linear-gradient(180deg, #000, transparent); pointer-events: none;
+  }
+  .dots { position: absolute; inset: 0; pointer-events: none; }
+  .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
+    box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
+  .beam { position: absolute; width: calc(1600 * var(--u)); height: 2px; left: calc(-260 * var(--u));
+    background: linear-gradient(90deg, transparent, rgba(80,200,255,.55), transparent);
+    transform: rotate(-16deg); filter: blur(.5px); pointer-events: none; opacity: .45; }
+  .beam.b1 { top: calc(300 * var(--u)); }
+  .beam.b2 { top: calc(1240 * var(--u)); transform: rotate(13deg); opacity: .3; }
+
+  /* 头部 */
+  .kicker {
+    margin-top: calc(120 * var(--u)); text-align: center;
+    font-size: calc(32 * var(--u)); letter-spacing: calc(6 * var(--u)); color: #9fd8ff;
+  }
+  .kicker b { color: #eaf6ff; font-weight: 600; }
+  .kicker span { margin: 0 calc(16 * var(--u)); color: rgba(120,190,255,.5); }
+
+  .title {
+    margin-top: calc(30 * var(--u)); text-align: center;
+    font-size: calc(78 * var(--u)); font-weight: 800; letter-spacing: calc(4 * var(--u));
+    text-shadow: 0 0 32px rgba(60,170,255,.5);
+  }
+  .title .dot { color: rgba(140,200,255,.6); font-weight: 400; padding: 0 calc(6 * var(--u)); }
+
+  .subtitle {
+    margin: calc(30 * var(--u)) auto 0; width: calc(920 * var(--u)); text-align: center;
+    font-size: calc(28 * var(--u)); letter-spacing: calc(2 * var(--u)); color: #a8cfee; line-height: 1.6;
+  }
+  .subtitle em { font-style: normal; color: #55dcff; }
+  .head-rule {
+    margin: calc(40 * var(--u)) auto 0; width: calc(860 * var(--u)); height: 2px; position: relative;
+    background: linear-gradient(90deg, transparent, rgba(70,190,255,.7), transparent);
+  }
+  .head-rule::after {
+    content: ""; position: absolute; left: 50%; top: calc(-4 * var(--u));
+    transform: translateX(-50%) rotate(45deg);
+    width: calc(10 * var(--u)); height: calc(10 * var(--u));
+    background: #45d9ff; box-shadow: 0 0 14px #45d9ff;
+  }
+
+  /* 卡片 */
+  .cards { position: absolute; left: calc(64 * var(--u)); right: calc(64 * var(--u));
+    top: calc(560 * var(--u));
+    display: flex; flex-direction: column; gap: calc(26 * var(--u)); }
+  .card {
+    position: relative; padding: calc(26 * var(--u)) calc(36 * var(--u)) calc(24 * var(--u)) calc(120 * var(--u));
+    border: 1px solid rgba(80,180,255,.35);
+    border-radius: calc(18 * var(--u));
+    background: linear-gradient(135deg, rgba(16,48,92,.66), rgba(8,24,50,.6));
+    box-shadow: 0 0 24px rgba(30,120,220,.14), inset 0 0 28px rgba(40,130,230,.08);
+  }
+  .card::before, .card::after {
+    content: ""; position: absolute;
+    width: calc(24 * var(--u)); height: calc(24 * var(--u));
+    border-color: #4fd0ff; border-style: solid;
+  }
+  .card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px;
+    border-radius: calc(18 * var(--u)) 0 0 0; }
+  .card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0;
+    border-radius: 0 0 calc(18 * var(--u)) 0; }
+
+  /* 圆形图标徽章(还原原图) */
+  .card .icon {
+    position: absolute; left: calc(34 * var(--u)); top: calc(26 * var(--u));
+    width: calc(62 * var(--u)); height: calc(62 * var(--u)); border-radius: 50%;
+    display: grid; place-items: center;
+    box-shadow: 0 0 16px rgba(60,180,255,.45);
+  }
+  .card .icon svg { width: 55%; height: 55%; }
+  .icon.teal   { background: radial-gradient(circle at 35% 30%, #3fd8c8, #0f7f86); }
+  .icon.green  { background: radial-gradient(circle at 35% 30%, #4fd08a, #147a4e); }
+  .icon.blue   { background: radial-gradient(circle at 35% 30%, #4f9fff, #1450a8); }
+  .icon.orange { background: radial-gradient(circle at 35% 30%, #ffb45a, #b8621a); }
+
+  .card h3 { font-size: calc(33 * var(--u)); font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .card h3 .sep { color: rgba(140,200,255,.55); font-weight: 400; margin: 0 calc(8 * var(--u)); }
+  .card h3 .hl  { color: #45d9ff; }
+  .card h3 .hlo { color: #ffa53e; }
+
+  .card ul { margin-top: calc(14 * var(--u)); list-style: none; }
+  .card li {
+    position: relative; padding-left: calc(28 * var(--u));
+    font-size: calc(24 * var(--u)); line-height: 1.5; color: #b9d9f2; letter-spacing: 1px;
+    margin-bottom: calc(5 * var(--u));
+  }
+  .card li::before {
+    content: ""; position: absolute; left: calc(4 * var(--u)); top: calc(14 * var(--u));
+    width: calc(9 * var(--u)); height: calc(9 * var(--u)); border-radius: 50%;
+    background: #3fd2ff; box-shadow: 0 0 8px #3fd2ff;
+  }
+  .card li b { color: #ffd9a8; font-weight: 600; }
+  .card li.first { color: #ffd08a; font-weight: 600; }
+  .card li.first::before { background: #ffa53e; box-shadow: 0 0 8px #ffa53e; }
+
+  /* 底部标语 */
+  .footer {
+    position: absolute; left: 0; right: 0; bottom: calc(96 * var(--u));
+    display: flex; align-items: center; justify-content: center; gap: calc(26 * var(--u));
+    padding: 0 calc(70 * var(--u));
+  }
+  .footer .line { flex: 1; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(70,190,255,.65)); }
+  .footer .line.r { background: linear-gradient(90deg, rgba(70,190,255,.65), transparent); }
+  .footer p { font-size: calc(35 * var(--u)); font-weight: 700; letter-spacing: 2px; white-space: nowrap;
+    text-shadow: 0 0 20px rgba(60,170,255,.5); }
+  .footer p .cy { color: #45d9ff; }
+  .brand { position: absolute; left: 0; right: 0; bottom: calc(46 * var(--u)); text-align: center;
+    font-size: calc(19 * var(--u)); letter-spacing: calc(8 * var(--u)); color: rgba(140,190,230,.55); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="poster">
+    <div class="grid-top"></div>
+    <div class="grid-floor"></div>
+    <div class="beam b1"></div>
+    <div class="beam b2"></div>
+    <div class="dots">
+      <i style="left:8%;  top:10%; width:calc(5*var(--u)); height:calc(5*var(--u));"></i>
+      <i style="left:16%; top:24%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+      <i style="left:88%; top:8%;  width:calc(4*var(--u)); height:calc(4*var(--u));"></i>
+      <i style="left:94%; top:22%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+      <i style="left:5%;  top:50%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+      <i style="left:95%; top:60%; width:calc(5*var(--u)); height:calc(5*var(--u)); opacity:.6;"></i>
+      <i style="left:4%;  top:78%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+      <i style="left:96%; top:82%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+      <i style="left:52%; top:4.5%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+      <i style="left:74%; top:15%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+    </div>
+
+    <div class="kicker"><b>技术部</b><span>·</span>数据治理<span>|</span>数据清洗<span>|</span>数据交易</div>
+    <h1 class="title">精治数据<span class="dot">·</span>可信交易<span class="dot">·</span>赋能要素</h1>
+    <p class="subtitle">以治理筑底座,以清洗提质量,以合规促交易,释放<em>数据要素</em>价值</p>
+    <div class="head-rule"></div>
+
+    <div class="cards">
+      <div class="card">
+        <div class="icon teal">
+          <svg viewBox="0 0 34 34" fill="none">
+            <path d="M17 4l11 5v7c0 6.8-4.6 12.6-11 14.6C10.6 28.6 6 22.8 6 16V9l11-5z" stroke="#eafffb" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+            <path d="M12 16l3.5 3.5L22.5 12" stroke="#eafffb" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>数据治理<span class="sep">·</span><span class="hl">质量为本</span></h3>
+        <ul>
+          <li>正本清源,去芜存菁</li>
+          <li>数据质量是生命线</li>
+          <li>全生命周期质量闭环</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="icon green">
+          <svg viewBox="0 0 34 34" fill="none">
+            <rect x="9" y="15" width="16" height="13" rx="2.5" stroke="#eafff2" stroke-width="2.2" fill="none"/>
+            <path d="M13 15v-3.5a4 4 0 018 0V15" stroke="#eafff2" stroke-width="2.2" fill="none"/>
+            <circle cx="17" cy="21.5" r="2" fill="#eafff2"/>
+          </svg>
+        </div>
+        <h3>可信流通<span class="sep">·</span><span class="hl">合规为先</span></h3>
+        <ul>
+          <li><b>数据可用不可见</b></li>
+          <li>原始数据不出域</li>
+          <li>合规促流通,可信创价值</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="icon blue">
+          <svg viewBox="0 0 34 34" fill="none">
+            <circle cx="17" cy="8"  r="3.2" stroke="#eaf4ff" stroke-width="2.2" fill="none"/>
+            <circle cx="8"  cy="24" r="3.2" stroke="#eaf4ff" stroke-width="2.2" fill="none"/>
+            <circle cx="26" cy="24" r="3.2" stroke="#eaf4ff" stroke-width="2.2" fill="none"/>
+            <path d="M15 11l-5 10M19 11l5 10M11.5 24h11" stroke="#eaf4ff" stroke-width="1.8"/>
+          </svg>
+        </div>
+        <h3>行业前沿<span class="sep">·</span><span class="hl">模数共振</span></h3>
+        <ul>
+          <li><b>三权分置</b>:持有权 · 使用权 · 经营权</li>
+          <li>高质量数据集就绪</li>
+          <li>从资源到资产到资本</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <div class="icon orange">
+          <svg viewBox="0 0 34 34" fill="none">
+            <path d="M17 4l11 5v7c0 6.8-4.6 12.6-11 14.6C10.6 28.6 6 22.8 6 16V9l11-5z" stroke="#fff4e6" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
+            <path d="M17 11v7M17 22.5v.5" stroke="#fff4e6" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>技术信条<span class="sep">·</span><span class="hlo">行为准则</span></h3>
+        <ul>
+          <li class="first">溯源可查,问题可改</li>
+          <li>不产出脏数据,不流转不可信资产</li>
+          <li>敬畏数据,严谨务实</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="line"></div>
+      <p>数据有价,合规有度<span class="cy">;</span>治理筑底,价值落地</p>
+      <div class="line r"></div>
+    </div>
+    <div class="brand">TECH DEPT · DATA GOVERNANCE</div>
+  </div>
+</div>
+</body>
+</html>
