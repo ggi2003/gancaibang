@@ -107,16 +107,25 @@
   .bk::before { left: 0; top: 0; border-right: none; border-bottom: none; }
   .bk::after { right: 0; bottom: 0; border-left: none; border-top: none; }
 
-  /* 白色政策卡(还原原图:白→淡蓝渐变、蓝色细边、青色光晕、柔和投影) */
+  /* 白色政策卡(还原原图:白→淡蓝渐变、蓝色细边、青色光晕、顶部中央青色凸耳) */
   .cards { margin: calc(24 * var(--u)) calc(64 * var(--u)) 0;
     display: flex; flex-direction: column; gap: calc(20 * var(--u)); }
   .card-w {
     position: relative; padding: calc(22 * var(--u)) calc(34 * var(--u)) calc(20 * var(--u));
     border-radius: calc(12 * var(--u));
-    background: linear-gradient(180deg, #ffffff 0%, #ecf4fc 55%, #d8e9f8 100%);
-    border: 1px solid rgba(150,205,250,.95);
-    box-shadow: 0 calc(10 * var(--u)) calc(26 * var(--u)) rgba(0,10,30,.45),
-                0 0 calc(18 * var(--u)) rgba(90,190,255,.30);
+    background: linear-gradient(180deg, #ffffff 0%, #eef5fc 55%, #d9eaf8 100%);
+    border: 1px solid rgba(140,200,245,.95);
+    box-shadow: 0 calc(10 * var(--u)) calc(26 * var(--u)) rgba(0,10,30,.42),
+                0 0 calc(22 * var(--u)) rgba(80,180,255,.35);
+  }
+  /* 顶部中央青色凸耳(原图卡片顶部的小把手) */
+  .card-w::before {
+    content: ""; position: absolute; top: calc(-6 * var(--u)); left: 50%;
+    transform: translateX(-50%);
+    width: calc(70 * var(--u)); height: calc(10 * var(--u));
+    border-radius: calc(5 * var(--u)) calc(5 * var(--u)) 0 0;
+    background: linear-gradient(180deg, #5fd8ff, #2aa8e8);
+    box-shadow: 0 0 calc(12 * var(--u)) rgba(80,200,255,.7);
   }
   .cards.tilt .card-w:nth-child(1) { transform: rotate(-2.2deg); }
   .cards.tilt .card-w:nth-child(2) { transform: rotate(1.8deg); }

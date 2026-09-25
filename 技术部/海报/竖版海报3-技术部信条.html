@@ -97,10 +97,18 @@
     box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0,5,20,.45),
                 inset 0 1px 0 rgba(170,235,255,.28);
   }
+  /* 顶边青色高光线 */
   .card::before {
     content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 2px;
     background: linear-gradient(90deg, transparent, rgba(170,235,255,.8), transparent);
   }
+  /* 四角L形角标 */
+  .corner { position: absolute; width: calc(18 * var(--u)); height: calc(18 * var(--u));
+    border: calc(2.5 * var(--u)) solid #4fd0ff; }
+  .corner.tl { top: -1px; left: -1px; border-right: none; border-bottom: none; border-radius: calc(16 * var(--u)) 0 0 0; }
+  .corner.tr { top: -1px; right: -1px; border-left: none; border-bottom: none; border-radius: 0 calc(16 * var(--u)) 0 0; }
+  .corner.bl { bottom: -1px; left: -1px; border-right: none; border-top: none; border-radius: 0 0 0 calc(16 * var(--u)); }
+  .corner.br { bottom: -1px; right: -1px; border-left: none; border-top: none; border-radius: 0 0 calc(16 * var(--u)) 0; }
 
   /* 圆形图标徽章(还原原图) */
   .card .icon {
@@ -184,6 +192,8 @@
 
     <div class="cards">
       <div class="card">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon teal">
           <svg viewBox="0 0 34 34" fill="none">
             <path d="M17 4l11 5v7c0 6.8-4.6 12.6-11 14.6C10.6 28.6 6 22.8 6 16V9l11-5z" stroke="#eafffb" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
@@ -199,6 +209,8 @@
       </div>
 
       <div class="card g">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon green">
           <svg viewBox="0 0 34 34" fill="none">
             <rect x="9" y="15" width="16" height="13" rx="2.5" stroke="#eafff2" stroke-width="2.2" fill="none"/>
@@ -215,6 +227,8 @@
       </div>
 
       <div class="card b">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon blue">
           <svg viewBox="0 0 34 34" fill="none">
             <circle cx="17" cy="8"  r="3.2" stroke="#eaf4ff" stroke-width="2.2" fill="none"/>
@@ -232,6 +246,8 @@
       </div>
 
       <div class="card o">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
         <div class="icon orange">
           <svg viewBox="0 0 34 34" fill="none">
             <path d="M17 4l11 5v7c0 6.8-4.6 12.6-11 14.6C10.6 28.6 6 22.8 6 16V9l11-5z" stroke="#fff4e6" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
