@@ -91,13 +91,14 @@
 
   /* 趋势卡片 */
   .cards { position: absolute; left: calc(64 * var(--u)); right: calc(64 * var(--u));
-    top: calc(520 * var(--u));
+    top: calc(520 * var(--u)); bottom: calc(260 * var(--u));
     display: flex; flex-direction: column; gap: calc(20 * var(--u)); }
   /* 卡片:原图为切角(倒角)科技边框 + 顶/底中央亮青短横条 + 外发光 */
   .card {
     --ch: calc(18 * var(--u));   /* 切角尺寸 */
     --bw: calc(1.5 * var(--u));  /* 边框粗细 */
     position: relative; display: flex; align-items: center; gap: calc(28 * var(--u));
+    flex: 1 1 0; min-height: 0;
     padding: calc(22 * var(--u)) calc(34 * var(--u));
     background:
       linear-gradient(90deg, transparent, #d6f3ff 18%, #d6f3ff 82%, transparent) top center / 58% calc(4 * var(--u)) no-repeat,
