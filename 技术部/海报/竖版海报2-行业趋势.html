@@ -7,21 +7,22 @@
 <style>
   /* 纯 CSS 自适应:--u = 设计稿 1px,随视口自动缩放,无需 JS */
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { background: #02060f;
+  html, body { background: #071a33;
     font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
-  .stage { min-height: 100vh; display: grid; place-items: center; }
+  .stage { min-height: 100vh; display: flex; justify-content: center; }
 
   .poster {
-    --u: min(calc(100vw / 1080), calc(100vh / 1920));
+    /* --u 按宽度比例缩放;高度自适应视口,无黑边 */
+    --u: calc(100vw / 1080);
     position: relative;
-    width: calc(1080 * var(--u));
-    height: calc(1920 * var(--u));
+    width: 100vw;
+    height: max(calc(1920 * var(--u)), 100vh);
     background:
-      radial-gradient(ellipse 900px 520px at 50% -6%, rgba(35,120,210,.4), transparent 65%),
-      radial-gradient(ellipse 760px 520px at 108% 30%, rgba(255,150,50,.10), transparent 60%),
-      radial-gradient(ellipse 700px 500px at -8% 66%, rgba(20,80,160,.25), transparent 60%),
-      radial-gradient(ellipse 1000px 560px at 50% 108%, rgba(30,140,220,.26), transparent 62%),
-      linear-gradient(180deg, #04101f 0%, #071a36 42%, #04101f 76%, #030c1a 100%);
+      radial-gradient(ellipse calc(900 * var(--u)) calc(520 * var(--u)) at 50% -6%, rgba(40,130,220,.46), transparent 65%),
+      radial-gradient(ellipse calc(760 * var(--u)) calc(520 * var(--u)) at 108% 30%, rgba(255,150,50,.14), transparent 60%),
+      radial-gradient(ellipse calc(700 * var(--u)) calc(500 * var(--u)) at -8% 66%, rgba(25,90,180,.32), transparent 60%),
+      radial-gradient(ellipse calc(1000 * var(--u)) calc(560 * var(--u)) at 50% 108%, rgba(35,150,230,.34), transparent 62%),
+      linear-gradient(180deg, #071a33 0%, #0b2650 42%, #071a33 76%, #051225 100%);
     color: #eaf6ff; overflow: hidden;
   }
 
