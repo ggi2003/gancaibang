@@ -45,15 +45,14 @@
     mask-image: linear-gradient(180deg, #000, transparent);
     -webkit-mask-image: linear-gradient(180deg, #000, transparent); pointer-events: none;
   }
+  /* 右上橙色光弧光轨(还原原图多组弧形光轨+发光粒子) */
+  .arcs { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .arcs svg { position: absolute; width: 100%; height: 100%; }
+
   .dots { position: absolute; inset: 0; pointer-events: none; }
   .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
-    box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
-  .dots i.or { background: #ffb45a; box-shadow: 0 0 8px 1px rgba(255,170,70,.85); }
-
-  /* 右上橙色光弧 */
-  .arcs { position: absolute; right: calc(-180 * var(--u)); top: calc(180 * var(--u));
-    width: calc(620 * var(--u)); height: calc(620 * var(--u));
-    pointer-events: none; opacity: .8; }
+    box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .85; }
+  .dots i.or { background: #ffb45a; box-shadow: 0 0 8px 1px rgba(255,170,70,.9); }
 
   /* 头部 */
   .badge {
@@ -161,16 +160,51 @@
     <div class="grid-top"></div>
     <div class="grid-floor"></div>
 
-    <!-- 右上橙色光弧(还原原图光轨) -->
-    <svg class="arcs" viewBox="0 0 620 620" fill="none">
-      <path d="M60 560 Q 300 420 560 60"  stroke="rgba(255,165,62,.5)"  stroke-width="2"/>
-      <path d="M20 500 Q 280 380 520 20"  stroke="rgba(255,165,62,.28)" stroke-width="1.5"/>
-      <path d="M120 600 Q 400 480 610 140" stroke="rgba(80,200,255,.35)" stroke-width="1.5"/>
-      <circle cx="470" cy="120" r="5" fill="#ffb45a"/>
-      <circle cx="540" cy="70"  r="4" fill="#ffd9a0"/>
-      <circle cx="380" cy="230" r="4" fill="#5fd8ff"/>
-      <circle cx="560" cy="180" r="3" fill="#ffb45a"/>
-    </svg>
+    <!-- 光弧光轨:右上橙色弧形光轨 + 底部青色弧形光轨 + 沿线发光粒子 -->
+    <div class="arcs">
+      <svg viewBox="0 0 1080 1920" fill="none" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="og1" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ffa53e" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#ffb45a" stop-opacity=".7"/>
+            <stop offset="100%" stop-color="#ffd9a0" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="og2" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#ff8c28" stop-opacity="0"/>
+            <stop offset="60%" stop-color="#ffa53e" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#ffcf8a" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="cg1" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0%" stop-color="#4fd0ff" stop-opacity="0"/>
+            <stop offset="50%" stop-color="#5fd8ff" stop-opacity=".55"/>
+            <stop offset="100%" stop-color="#7fe0ff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- 右上橙色弧形光轨 -->
+        <path d="M 1040 120 Q 720 200 820 420 T 1080 700" stroke="url(#og1)" stroke-width="2.5" fill="none" filter="url(#glow)"/>
+        <path d="M 1060 60 Q 760 140 860 340 T 1080 620" stroke="url(#og2)" stroke-width="1.8" fill="none" filter="url(#glow)"/>
+        <path d="M 1000 200 Q 800 260 880 440 T 1080 760" stroke="url(#og1)" stroke-width="1.5" fill="none" filter="url(#glow)" opacity=".7"/>
+        <path d="M 1080 0 Q 900 100 940 300 T 1080 540" stroke="url(#og2)" stroke-width="1.2" fill="none" filter="url(#glow)" opacity=".6"/>
+        <!-- 底部青色弧形光轨 -->
+        <path d="M 0 1280 Q 300 1180 540 1280 T 1080 1300" stroke="url(#cg1)" stroke-width="2" fill="none" filter="url(#glow)"/>
+        <path d="M 0 1340 Q 360 1240 600 1340 T 1080 1360" stroke="url(#cg1)" stroke-width="1.4" fill="none" filter="url(#glow)" opacity=".6"/>
+        <!-- 橙色发光粒子 -->
+        <circle cx="1000" cy="150" r="5" fill="#ffb45a" filter="url(#glow)"/>
+        <circle cx="1050" cy="90" r="4" fill="#ffd9a0" filter="url(#glow)"/>
+        <circle cx="920" cy="300" r="4" fill="#ffa53e" filter="url(#glow)"/>
+        <circle cx="1060" cy="420" r="3.5" fill="#ffb45a" filter="url(#glow)"/>
+        <circle cx="980" cy="540" r="3" fill="#ffcf8a" filter="url(#glow)"/>
+        <circle cx="1060" cy="660" r="4" fill="#ffa53e" filter="url(#glow)"/>
+        <circle cx="880" cy="200" r="3" fill="#ffd9a0" filter="url(#glow)" opacity=".7"/>
+        <!-- 青色发光粒子 -->
+        <circle cx="60" cy="1240" r="4" fill="#5fd8ff" filter="url(#glow)"/>
+        <circle cx="180" cy="1300" r="3.5" fill="#7fe0ff" filter="url(#glow)"/>
+        <circle cx="320" cy="1260" r="3" fill="#4fd0ff" filter="url(#glow)" opacity=".8"/>
+        <circle cx="500" cy="1310" r="4" fill="#5fd8ff" filter="url(#glow)"/>
+        <circle cx="720" cy="1280" r="3" fill="#7fe0ff" filter="url(#glow)" opacity=".7"/>
+      </svg>
+    </div>
 
     <div class="dots">
       <i style="left:8%;  top:11%; width:calc(5*var(--u)); height:calc(5*var(--u));"></i>

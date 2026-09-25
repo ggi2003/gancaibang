@@ -47,11 +47,18 @@
   .dots { position: absolute; inset: 0; pointer-events: none; }
   .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
     box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
-  .beam { position: absolute; width: calc(1600 * var(--u)); height: 2px; left: calc(-260 * var(--u));
+  /* 光弧光轨:多条斜向青色光束 + 中央垂直光柱 */
+  .beams { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+  .beams svg { position: absolute; width: 100%; height: 100%; }
+  .beam {
+    position: absolute; height: 2px;
     background: linear-gradient(90deg, transparent, rgba(80,200,255,.55), transparent);
-    transform: rotate(-16deg); filter: blur(.5px); pointer-events: none; opacity: .45; }
-  .beam.b1 { top: calc(320 * var(--u)); }
-  .beam.b2 { top: calc(1160 * var(--u)); transform: rotate(13deg); opacity: .3; }
+    filter: blur(.5px); pointer-events: none;
+  }
+  .beam.b1 { width: calc(1600 * var(--u)); left: calc(-300 * var(--u)); top: calc(220 * var(--u)); transform: rotate(-18deg); opacity: .5; }
+  .beam.b2 { width: calc(1800 * var(--u)); left: calc(-400 * var(--u)); top: calc(480 * var(--u)); transform: rotate(-12deg); opacity: .35; }
+  .beam.b3 { width: calc(1400 * var(--u)); right: calc(-300 * var(--u)); top: calc(760 * var(--u)); transform: rotate(10deg); opacity: .3; }
+  .beam.b4 { width: calc(1200 * var(--u)); left: calc(-200 * var(--u)); top: calc(1040 * var(--u)); transform: rotate(-8deg); opacity: .25; }
 
   /* 头部 */
   .badge {
@@ -180,8 +187,24 @@
   <div class="poster">
     <div class="grid-top"></div>
     <div class="grid-floor"></div>
+    <!-- 光弧光轨:多条斜向青色光束 + 中央垂直光柱 -->
+    <div class="beams">
+      <svg viewBox="0 0 1080 1920" fill="none" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="vb" x1="0.5" y1="0" x2="0.5" y2="1">
+            <stop offset="0%" stop-color="#4fd0ff" stop-opacity="0"/>
+            <stop offset="40%" stop-color="#5fd8ff" stop-opacity=".25"/>
+            <stop offset="100%" stop-color="#4fd0ff" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- 中央垂直光柱 -->
+        <rect x="528" y="0" width="24" height="1920" fill="url(#vb)"/>
+      </svg>
+    </div>
     <div class="beam b1"></div>
     <div class="beam b2"></div>
+    <div class="beam b3"></div>
+    <div class="beam b4"></div>
     <div class="dots">
       <i style="left:8%;  top:11%; width:calc(5*var(--u)); height:calc(5*var(--u));"></i>
       <i style="left:17%; top:24%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>

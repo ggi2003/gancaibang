@@ -48,11 +48,21 @@
   .dots { position: absolute; inset: 0; pointer-events: none; }
   .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
     box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
-  .beam { position: absolute; width: calc(1600 * var(--u)); height: 2px; left: calc(-260 * var(--u));
-    background: linear-gradient(90deg, transparent, rgba(80,200,255,.55), transparent);
-    transform: rotate(-16deg); filter: blur(.5px); pointer-events: none; opacity: .45; }
-  .beam.b1 { top: calc(300 * var(--u)); }
-  .beam.b2 { top: calc(1240 * var(--u)); transform: rotate(13deg); opacity: .3; }
+  /* 光弧光轨:背景星座网络连线 + 底部上方青色亮光线 */
+  .constellation { position: absolute; inset: 0; pointer-events: none; opacity: .45; }
+  .constellation svg { position: absolute; width: 100%; height: 100%; }
+  .bottom-glow {
+    position: absolute; left: 10%; right: 10%; bottom: calc(220 * var(--u)); height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(80,210,255,.9), transparent);
+    box-shadow: 0 0 calc(16 * var(--u)) rgba(80,210,255,.8);
+  }
+  .beam {
+    position: absolute; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(80,200,255,.4), transparent);
+    filter: blur(.5px); pointer-events: none;
+  }
+  .beam.b1 { width: calc(1600 * var(--u)); left: calc(-300 * var(--u)); top: calc(300 * var(--u)); transform: rotate(-16deg); opacity: .35; }
+  .beam.b2 { width: calc(1400 * var(--u)); right: calc(-300 * var(--u)); top: calc(1240 * var(--u)); transform: rotate(13deg); opacity: .25; }
 
   /* 头部 */
   .kicker {
@@ -170,8 +180,34 @@
   <div class="poster">
     <div class="grid-top"></div>
     <div class="grid-floor"></div>
+    <!-- 光弧光轨:背景星座网络连线 -->
+    <div class="constellation">
+      <svg viewBox="0 0 1080 1920" fill="none" preserveAspectRatio="none">
+        <defs>
+          <filter id="cglow"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <!-- 左侧网络 -->
+        <polyline points="40,300 120,380 80,520 180,600 100,740 200,820" stroke="rgba(80,200,255,.3)" stroke-width="1.5" filter="url(#cglow)"/>
+        <polyline points="60,900 160,980 90,1100 200,1180" stroke="rgba(80,200,255,.25)" stroke-width="1.2" filter="url(#cglow)"/>
+        <!-- 右侧网络 -->
+        <polyline points="1040,280 960,360 1000,500 900,580 980,720 880,800" stroke="rgba(80,200,255,.3)" stroke-width="1.5" filter="url(#cglow)"/>
+        <polyline points="1020,880 920,960 990,1080 890,1160" stroke="rgba(80,200,255,.25)" stroke-width="1.2" filter="url(#cglow)"/>
+        <!-- 节点 -->
+        <circle cx="40" cy="300" r="4" fill="#5fd8ff" filter="url(#cglow)"/>
+        <circle cx="120" cy="380" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
+        <circle cx="180" cy="600" r="4" fill="#5fd8ff" filter="url(#cglow)"/>
+        <circle cx="200" cy="820" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
+        <circle cx="1040" cy="280" r="4" fill="#5fd8ff" filter="url(#cglow)"/>
+        <circle cx="960" cy="360" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
+        <circle cx="900" cy="580" r="4" fill="#5fd8ff" filter="url(#cglow)"/>
+        <circle cx="880" cy="800" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
+        <circle cx="990" cy="1080" r="3.5" fill="#5fd8ff" filter="url(#cglow)"/>
+        <circle cx="160" cy="980" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
+      </svg>
+    </div>
     <div class="beam b1"></div>
     <div class="beam b2"></div>
+    <div class="bottom-glow"></div>
     <div class="dots">
       <i style="left:8%;  top:10%; width:calc(5*var(--u)); height:calc(5*var(--u));"></i>
       <i style="left:16%; top:24%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
