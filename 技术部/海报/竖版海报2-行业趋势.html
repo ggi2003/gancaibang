@@ -97,24 +97,25 @@
   /* 卡片:原图为切角(倒角)科技边框 + 顶/底中央亮青短横条 + 外发光 */
   .card {
     --ch: calc(18 * var(--u));   /* 切角尺寸 */
-    --bw: calc(1.5 * var(--u));  /* 边框粗细 */
+    --bw: calc(3.5 * var(--u));  /* 边框粗细 */
     position: relative; display: flex; align-items: center; gap: calc(28 * var(--u));
     flex: 1 1 0; min-height: 0;
     padding: calc(22 * var(--u)) calc(34 * var(--u));
     background:
-      linear-gradient(90deg, transparent, #d6f3ff 18%, #d6f3ff 82%, transparent) top center / 58% calc(4 * var(--u)) no-repeat,
-      linear-gradient(90deg, transparent, #bfe9ff 18%, #bfe9ff 82%, transparent) bottom center / 58% calc(4 * var(--u)) no-repeat,
-      linear-gradient(160deg, rgba(150,225,255,.9), rgba(80,170,240,.55) 40%, rgba(70,160,235,.5));
+      linear-gradient(90deg, transparent, #d6f3ff 18%, #d6f3ff 82%, transparent) top left / 58% calc(4 * var(--u)) no-repeat,
+      linear-gradient(30deg, transparent, #bfe9ff 18%, #bfe9ff 82%, transparent) bottom right / 28% calc(4 * var(--u)) no-repeat,
+      linear-gradient(160deg, rgba(150,225,255,.2), rgba(80,170,240,.35) 40%, rgba(70,160,235,.5));
     clip-path: polygon(
       var(--ch) 0, calc(100% - var(--ch)) 0,
       100% var(--ch), 100% calc(100% - var(--ch)),
       calc(100% - var(--ch)) 100%, var(--ch) 100%,
       0 calc(100% - var(--ch)), 0 var(--ch));
-    filter: drop-shadow(0 0 calc(14 * var(--u)) rgba(60,170,255,.35));
+    /* filter: drop-shadow(0 0 calc(14 * var(--u)) rgba(60,170,255,.35)); */
   }
   /* 内层:同形切角内缩边框宽度,顶/底中央留缺口露出亮条 */
   .card::before {
-    content: ""; position: absolute; inset: var(--bw);
+    content: ""; position: absolute; 
+    inset: var(--bw);
     --ch2: calc(17 * var(--u)); --d: calc(4 * var(--u));
     clip-path: polygon(
       var(--ch2) 0,
@@ -124,7 +125,7 @@
       calc(100% - var(--ch2)) 100%,
       78% 100%, 78% calc(100% - var(--d)), 22% calc(100% - var(--d)), 22% 100%,
       var(--ch2) 100%, 0 calc(100% - var(--ch2)), 0 var(--ch2));
-    background: linear-gradient(160deg, rgba(46,100,172,.5) 0%, rgba(16,48,98,.58) 45%, rgba(8,26,58,.68) 100%);
+    background: linear-gradient(160deg, rgba(46,100,172,.2) 0%, rgba(16,48,98,.38) 45%, rgba(8,26,58,.58) 100%);
   }
   .card > * { position: relative; z-index: 1; }
 
@@ -138,7 +139,7 @@
   .card h3 .bar { color: rgba(140,200,255,.5); font-weight: 400; margin: 0 calc(6 * var(--u)); }
   .card h3 .hl { color: #45d9ff; }
   .card h3 .hlo { color: #ffa53e; }
-  .card p { margin-top: calc(8 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.5;
+  .card p { margin-top: calc(8 * var(--u)); font-size: calc(28 * var(--u)); line-height: 1.5;
     color: #b9d9f2; letter-spacing: .5px; }
   .card p b { color: #ffd9a8; font-weight: 600; }
 
@@ -306,7 +307,7 @@
 
     <div class="footer">
       <div class="line"></div>
-      <p>判断趋势,先筑牢<span class="cy">质量与合规底座</span></p>
+      <p>判断趋势,筑牢<span class="cy">质量与合规</span>底座</p>
       <div class="line r"></div>
     </div>
     <div class="brand">DATA TRENDS · HIGH-QUALITY CIRCULATION</div>
