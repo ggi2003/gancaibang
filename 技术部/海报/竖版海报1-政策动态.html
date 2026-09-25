@@ -173,15 +173,47 @@
   .brand { position: absolute; left: 0; right: 0; bottom: calc(46 * var(--u)); text-align: center;
     font-size: calc(19 * var(--u)); letter-spacing: calc(8 * var(--u)); color: rgba(140,190,230,.55); }
 
-  /* 左下角高楼林立(还原原图:青色渐变光柱群 + 发光基线) */
+  /* 左下角高楼林立(还原原图三种楼型:实心发光柱/空心描边窗格柱/暗色半透明柱) */
   .skyline { position: absolute; left: calc(24 * var(--u)); bottom: calc(150 * var(--u));
     display: flex; align-items: flex-end; gap: calc(7 * var(--u)); }
   .skyline i { width: calc(13 * var(--u)); border-radius: calc(2 * var(--u)) calc(2 * var(--u)) 0 0;
+    position: relative; }
+  /* 实心发光柱 */
+  .skyline i.solid {
     background: linear-gradient(180deg, #6fe4ff 0%, rgba(40,130,230,.55) 55%, rgba(20,70,160,.12) 100%);
     box-shadow: 0 0 calc(8 * var(--u)) rgba(70,190,255,.35); }
-  .skyline i.tall { background: linear-gradient(180deg, #b8f2ff, #4fd0ff 40%, rgba(30,110,210,.35));
-    box-shadow: 0 0 calc(14 * var(--u)) rgba(120,220,255,.8); }
-  .skyline i.dim { opacity: .5; }
+  /* 最高亮主塔 */
+  .skyline i.tall { width: calc(15 * var(--u));
+    background: linear-gradient(180deg, #c8f6ff, #4fd0ff 40%, rgba(30,110,210,.35));
+    box-shadow: 0 0 calc(16 * var(--u)) rgba(130,225,255,.85); }
+  /* 空心描边柱:青色边框 + 横向窗格线 */
+  .skyline i.outline { width: calc(16 * var(--u));
+    background: repeating-linear-gradient(180deg,
+      rgba(110,210,255,.55) 0 calc(1.5 * var(--u)),
+      transparent calc(1.5 * var(--u)) calc(9 * var(--u)));
+    border: calc(1.5 * var(--u)) solid rgba(110,210,255,.75); border-bottom: none;
+    box-shadow: 0 0 calc(8 * var(--u)) rgba(70,190,255,.3); }
+  /* 暗色半透明柱 */
+  .skyline i.dim { background: linear-gradient(180deg, rgba(70,160,240,.5), rgba(20,60,140,.15));
+    opacity: .55; }
+  /* 阶梯双塔:主柱+侧肩 */
+  .skyline i.step { background: linear-gradient(180deg, #5fd8ff, rgba(30,110,210,.3));
+    box-shadow: 0 0 calc(8 * var(--u)) rgba(70,190,255,.3); }
+  .skyline i.step::before { content: ""; position: absolute; left: 100%; bottom: 0;
+    width: calc(8 * var(--u)); height: 55%;
+    background: linear-gradient(180deg, rgba(90,200,255,.7), rgba(30,100,200,.2)); }
+  /* 天线细柱:细身+顶部亮点头 */
+  .skyline i.antenna { width: calc(5 * var(--u));
+    background: linear-gradient(180deg, #8feaff, rgba(40,130,230,.4)); }
+  .skyline i.antenna::before { content: ""; position: absolute; left: 50%; top: calc(-6 * var(--u));
+    transform: translateX(-50%); width: calc(5 * var(--u)); height: calc(5 * var(--u));
+    border-radius: 50%; background: #b8f2ff; box-shadow: 0 0 calc(8 * var(--u)) #7fe0ff; }
+  /* 宽体低楼 */
+  .skyline i.wide { width: calc(24 * var(--u));
+    background: linear-gradient(180deg, rgba(90,190,255,.75), rgba(25,80,170,.25));
+    box-shadow: 0 0 calc(6 * var(--u)) rgba(70,190,255,.25); }
+  /* 极淡远景楼 */
+  .skyline i.far { background: rgba(60,140,220,.28); opacity: .4; }
   .skyline::after { content: ""; position: absolute; left: calc(-16 * var(--u)); right: calc(-30 * var(--u));
     bottom: 0; height: calc(2.5 * var(--u));
     background: linear-gradient(90deg, transparent, rgba(90,210,255,.9) 30%, rgba(90,210,255,.5) 70%, transparent);
@@ -290,15 +322,27 @@
     </div>
 
     <div class="skyline">
-      <i class="dim" style="height:calc(30*var(--u))"></i><i style="height:calc(55*var(--u))"></i>
-      <i style="height:calc(42*var(--u))"></i><i style="height:calc(78*var(--u))"></i>
-      <i class="dim" style="height:calc(60*var(--u))"></i><i style="height:calc(95*var(--u))"></i>
-      <i style="height:calc(70*var(--u))"></i><i class="tall" style="height:calc(132*var(--u))"></i>
-      <i style="height:calc(105*var(--u))"></i><i style="height:calc(85*var(--u))"></i>
-      <i class="tall" style="height:calc(118*var(--u))"></i><i style="height:calc(92*var(--u))"></i>
-      <i class="dim" style="height:calc(66*var(--u))"></i><i style="height:calc(74*var(--u))"></i>
-      <i style="height:calc(52*var(--u))"></i><i class="dim" style="height:calc(40*var(--u))"></i>
-      <i style="height:calc(30*var(--u))"></i><i class="dim" style="height:calc(22*var(--u))"></i>
+      <i class="far" style="height:calc(22*var(--u))"></i>
+      <i class="dim" style="height:calc(36*var(--u))"></i>
+      <i class="solid" style="height:calc(28*var(--u))"></i>
+      <i class="antenna" style="height:calc(64*var(--u)); margin-left:calc(16*var(--u))"></i>
+      <i class="outline" style="height:calc(72*var(--u))"></i>
+      <i class="solid" style="height:calc(48*var(--u))"></i>
+      <i class="dim" style="height:calc(58*var(--u))"></i>
+      <i class="wide" style="height:calc(32*var(--u)); margin-left:calc(22*var(--u))"></i>
+      <i class="tall" style="height:calc(132*var(--u))"></i>
+      <i class="step" style="height:calc(96*var(--u))"></i>
+      <i class="solid" style="height:calc(110*var(--u))"></i>
+      <i class="outline" style="height:calc(80*var(--u))"></i>
+      <i class="antenna" style="height:calc(92*var(--u)); margin-left:calc(20*var(--u))"></i>
+      <i class="dim" style="height:calc(46*var(--u))"></i>
+      <i class="far" style="height:calc(60*var(--u))"></i>
+      <i class="solid" style="height:calc(38*var(--u))"></i>
+      <i class="step" style="height:calc(70*var(--u)); margin-left:calc(26*var(--u))"></i>
+      <i class="outline" style="height:calc(54*var(--u))"></i>
+      <i class="dim" style="height:calc(30*var(--u))"></i>
+      <i class="wide" style="height:calc(24*var(--u)); margin-left:calc(14*var(--u))"></i>
+      <i class="far" style="height:calc(18*var(--u))"></i>
     </div>
 
     <div class="footer">
