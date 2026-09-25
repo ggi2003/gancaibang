@@ -87,60 +87,43 @@
     background: #45d9ff; box-shadow: 0 0 14px #45d9ff;
   }
 
+  /* 分区标题(带原图蓝色直角括号) */
   .sec {
     margin: calc(34 * var(--u)) calc(64 * var(--u)) 0;
     display: flex; align-items: center; gap: calc(18 * var(--u));
-    font-size: calc(30 * var(--u)); font-weight: 700; letter-spacing: calc(4 * var(--u)); color: #cfeeff;
+    font-size: calc(30 * var(--u)); letter-spacing: calc(4 * var(--u)); color: #cfeeff;
   }
   .sec::before, .sec::after {
     content: ""; height: 2px; flex: 1;
     background: linear-gradient(90deg, transparent, rgba(70,190,255,.55));
   }
   .sec::after { background: linear-gradient(90deg, rgba(70,190,255,.55), transparent); }
+  .bk { position: relative; padding: calc(4 * var(--u)) calc(16 * var(--u)); font-weight: 700; }
+  .bk::before, .bk::after {
+    content: ""; position: absolute;
+    width: calc(14 * var(--u)); height: calc(14 * var(--u));
+    border: calc(3 * var(--u)) solid #4fd0ff;
+  }
+  .bk::before { left: 0; top: 0; border-right: none; border-bottom: none; }
+  .bk::after { right: 0; bottom: 0; border-left: none; border-top: none; }
 
-  /* 亮色政策卡(还原原图白色卡片) */
+  /* 白色政策卡(还原原图:白→淡蓝渐变、蓝色细边、青色光晕、柔和投影) */
   .cards { margin: calc(24 * var(--u)) calc(64 * var(--u)) 0;
     display: flex; flex-direction: column; gap: calc(20 * var(--u)); }
-  .card-l {
+  .card-w {
     position: relative; padding: calc(22 * var(--u)) calc(34 * var(--u)) calc(20 * var(--u));
-    border-radius: calc(14 * var(--u));
-    background: linear-gradient(160deg, #f4faff 0%, #dcedfa 100%);
-    border: 1px solid rgba(120,200,255,.9);
-    box-shadow: 0 0 22px rgba(70,180,255,.35), 0 8px 24px rgba(0,0,0,.35);
+    border-radius: calc(12 * var(--u));
+    background: linear-gradient(180deg, #ffffff 0%, #ecf4fc 55%, #d8e9f8 100%);
+    border: 1px solid rgba(150,205,250,.95);
+    box-shadow: 0 calc(10 * var(--u)) calc(26 * var(--u)) rgba(0,10,30,.45),
+                0 0 calc(18 * var(--u)) rgba(90,190,255,.30);
   }
-  .card-l:nth-child(odd) { transform: rotate(-.5deg); }
-  .card-l:nth-child(even) { transform: rotate(.5deg); }
-  .card-l h3 { font-size: calc(29 * var(--u)); font-weight: 800; color: #0a3f7a; letter-spacing: 1px; }
-  .card-l p { margin-top: calc(8 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.5;
-    color: #1d5c96; letter-spacing: .5px; }
-  .card-l::before {
-    content: ""; position: absolute; left: 0; top: calc(14 * var(--u)); bottom: calc(14 * var(--u));
-    width: calc(5 * var(--u)); border-radius: calc(3 * var(--u));
-    background: linear-gradient(180deg, #35b6ff, #0a6fd0);
-    box-shadow: 0 0 10px rgba(60,180,255,.8);
-  }
-
-  /* 暗色重点政策卡 */
-  .card-d {
-    position: relative; padding: calc(22 * var(--u)) calc(34 * var(--u)) calc(20 * var(--u));
-    border-radius: calc(14 * var(--u));
-    border: 1px solid rgba(80,180,255,.35);
-    background: linear-gradient(135deg, rgba(16,48,92,.66), rgba(8,24,50,.6));
-    box-shadow: 0 0 24px rgba(30,120,220,.14), inset 0 0 28px rgba(40,130,230,.08);
-  }
-  .card-d::before, .card-d::after {
-    content: ""; position: absolute;
-    width: calc(22 * var(--u)); height: calc(22 * var(--u));
-    border-color: #4fd0ff; border-style: solid;
-  }
-  .card-d::before { top: -1px; left: -1px; border-width: 2px 0 0 2px;
-    border-radius: calc(14 * var(--u)) 0 0 0; }
-  .card-d::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0;
-    border-radius: 0 0 calc(14 * var(--u)) 0; }
-  .card-d h3 { font-size: calc(29 * var(--u)); font-weight: 700; color: #fff; letter-spacing: 1px; }
-  .card-d h3 .hl { color: #45d9ff; }
-  .card-d p { margin-top: calc(8 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.5;
-    color: #b9d9f2; letter-spacing: .5px; }
+  .cards.tilt .card-w:nth-child(1) { transform: rotate(-2.2deg); }
+  .cards.tilt .card-w:nth-child(2) { transform: rotate(1.8deg); }
+  .cards.tilt .card-w:nth-child(3) { transform: rotate(-1.2deg); }
+  .card-w h3 { font-size: calc(29 * var(--u)); font-weight: 800; color: #0b3f7d; letter-spacing: 1px; }
+  .card-w p { margin-top: calc(8 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.5;
+    color: #2a6099; letter-spacing: .5px; }
 
   /* 底部词带 */
   .strip {
@@ -161,7 +144,7 @@
     box-shadow: inset 0 0 14px rgba(60,160,255,.15), 0 0 12px rgba(50,150,255,.18);
   }
 
-  /* 底部标语 */
+  /* 底部标语(原图为整行金色) */
   .footer {
     position: absolute; left: 0; right: 0; bottom: calc(96 * var(--u));
     display: flex; align-items: center; justify-content: center; gap: calc(26 * var(--u));
@@ -171,9 +154,7 @@
     background: linear-gradient(90deg, transparent, rgba(70,190,255,.65)); }
   .footer .line.r { background: linear-gradient(90deg, rgba(70,190,255,.65), transparent); }
   .footer p { font-size: calc(38 * var(--u)); font-weight: 800; letter-spacing: 2px; white-space: nowrap;
-    text-shadow: 0 0 20px rgba(60,170,255,.5); }
-  .footer p .or { color: #ffa53e; }
-  .footer p .cy { color: #45d9ff; }
+    color: #ffb454; text-shadow: 0 0 20px rgba(255,160,50,.45); }
   .brand { position: absolute; left: 0; right: 0; bottom: calc(46 * var(--u)); text-align: center;
     font-size: calc(19 * var(--u)); letter-spacing: calc(8 * var(--u)); color: rgba(140,190,230,.55); }
 
@@ -210,30 +191,30 @@
     <p class="subtitle">产权登记、合规流通、数据资产、可信空间与<em>高质量数据集</em>建设成为关键主线</p>
     <div class="head-rule"></div>
 
-    <div class="sec">政策要点</div>
-    <div class="cards">
-      <div class="card-l">
+    <div class="sec"><b class="bk">政策要点</b></div>
+    <div class="cards tilt">
+      <div class="card-w">
         <h3>数据产权登记推进</h3>
         <p>统一登记制度明确数据资源持有权、加工使用权、产品经营权,为交易与资产化提供基础</p>
       </div>
-      <div class="card-l">
+      <div class="card-w">
         <h3>可信数据空间扩容</h3>
         <p>各地试点加速,推动跨主体、跨行业数据安全流通,成为数据交易重要基础设施</p>
       </div>
-      <div class="card-l">
+      <div class="card-w">
         <h3>高质量数据集建设升温</h3>
         <p>政策鼓励清洗、标注、对齐、质检全流程建设,词元交易与合成数据受到关注</p>
       </div>
     </div>
 
-    <div class="sec">重点政策</div>
+    <div class="sec"><b class="bk">重点政策</b></div>
     <div class="cards">
-      <div class="card-d">
-        <h3>企业数据资源<span class="hl">会计处理</span></h3>
+      <div class="card-w">
+        <h3>企业数据资源会计处理</h3>
         <p>合规加工的数据资源可按规定进行资产化处理,数据资产入表路径持续落地</p>
       </div>
-      <div class="card-d">
-        <h3>数据流通服务体系<span class="hl">完善</span></h3>
+      <div class="card-w">
+        <h3>数据流通服务体系完善</h3>
         <p>数据商、交易机构、第三方测评与合规服务协同,降低数据产品流通成本</p>
       </div>
     </div>
@@ -261,7 +242,7 @@
 
     <div class="footer">
       <div class="line"></div>
-      <p><span class="or">新闻跟踪要快</span>,<span class="cy">数据治理要稳</span></p>
+      <p>新闻跟踪要快,数据治理要稳</p>
       <div class="line r"></div>
     </div>
     <div class="brand">DATA NEWS · POLICY TRACKING</div>

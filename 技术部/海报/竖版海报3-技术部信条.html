@@ -91,20 +91,16 @@
     display: flex; flex-direction: column; gap: calc(26 * var(--u)); }
   .card {
     position: relative; padding: calc(26 * var(--u)) calc(36 * var(--u)) calc(24 * var(--u)) calc(120 * var(--u));
-    border: 1px solid rgba(80,180,255,.35);
-    border-radius: calc(18 * var(--u));
-    background: linear-gradient(135deg, rgba(16,48,92,.66), rgba(8,24,50,.6));
-    box-shadow: 0 0 24px rgba(30,120,220,.14), inset 0 0 28px rgba(40,130,230,.08);
+    border: 1px solid rgba(110,190,255,.42);
+    border-radius: calc(16 * var(--u));
+    background: linear-gradient(150deg, rgba(36,82,148,.55) 0%, rgba(14,40,82,.60) 55%, rgba(8,24,52,.66) 100%);
+    box-shadow: 0 calc(8 * var(--u)) calc(24 * var(--u)) rgba(0,5,20,.45),
+                inset 0 1px 0 rgba(170,235,255,.28);
   }
-  .card::before, .card::after {
-    content: ""; position: absolute;
-    width: calc(24 * var(--u)); height: calc(24 * var(--u));
-    border-color: #4fd0ff; border-style: solid;
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 8%; right: 8%; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(170,235,255,.8), transparent);
   }
-  .card::before { top: -1px; left: -1px; border-width: 2px 0 0 2px;
-    border-radius: calc(18 * var(--u)) 0 0 0; }
-  .card::after { bottom: -1px; right: -1px; border-width: 0 2px 2px 0;
-    border-radius: 0 0 calc(18 * var(--u)) 0; }
 
   /* 圆形图标徽章(还原原图) */
   .card .icon {
@@ -123,6 +119,8 @@
   .card h3 .sep { color: rgba(140,200,255,.55); font-weight: 400; margin: 0 calc(8 * var(--u)); }
   .card h3 .hl  { color: #45d9ff; }
   .card h3 .hlo { color: #ffa53e; }
+  .card h3 .acc-g { color: #4fd08a; }
+  .card h3 .acc-b { color: #5fb0ff; }
 
   .card ul { margin-top: calc(14 * var(--u)); list-style: none; }
   .card li {
@@ -138,6 +136,10 @@
   .card li b { color: #ffd9a8; font-weight: 600; }
   .card li.first { color: #ffd08a; font-weight: 600; }
   .card li.first::before { background: #ffa53e; box-shadow: 0 0 8px #ffa53e; }
+  /* 各卡圆点颜色对应图标色:青 / 绿 / 蓝 / 橙 */
+  .card.g li::before { background: #4fd08a; box-shadow: 0 0 8px #4fd08a; }
+  .card.b li::before { background: #5fb0ff; box-shadow: 0 0 8px #5fb0ff; }
+  .card.o li::before { background: #ffa53e; box-shadow: 0 0 8px #ffa53e; }
 
   /* 底部标语 */
   .footer {
@@ -196,7 +198,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card g">
         <div class="icon green">
           <svg viewBox="0 0 34 34" fill="none">
             <rect x="9" y="15" width="16" height="13" rx="2.5" stroke="#eafff2" stroke-width="2.2" fill="none"/>
@@ -204,7 +206,7 @@
             <circle cx="17" cy="21.5" r="2" fill="#eafff2"/>
           </svg>
         </div>
-        <h3>可信流通<span class="sep">·</span><span class="hl">合规为先</span></h3>
+        <h3>可信流通<span class="sep">·</span><span class="acc-g">合规为先</span></h3>
         <ul>
           <li><b>数据可用不可见</b></li>
           <li>原始数据不出域</li>
@@ -212,7 +214,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card b">
         <div class="icon blue">
           <svg viewBox="0 0 34 34" fill="none">
             <circle cx="17" cy="8"  r="3.2" stroke="#eaf4ff" stroke-width="2.2" fill="none"/>
@@ -221,7 +223,7 @@
             <path d="M15 11l-5 10M19 11l5 10M11.5 24h11" stroke="#eaf4ff" stroke-width="1.8"/>
           </svg>
         </div>
-        <h3>行业前沿<span class="sep">·</span><span class="hl">模数共振</span></h3>
+        <h3>行业前沿<span class="sep">·</span><span class="acc-b">模数共振</span></h3>
         <ul>
           <li><b>三权分置</b>:持有权 · 使用权 · 经营权</li>
           <li>高质量数据集就绪</li>
@@ -229,7 +231,7 @@
         </ul>
       </div>
 
-      <div class="card">
+      <div class="card o">
         <div class="icon orange">
           <svg viewBox="0 0 34 34" fill="none">
             <path d="M17 4l11 5v7c0 6.8-4.6 12.6-11 14.6C10.6 28.6 6 22.8 6 16V9l11-5z" stroke="#fff4e6" stroke-width="2.2" fill="none" stroke-linejoin="round"/>
