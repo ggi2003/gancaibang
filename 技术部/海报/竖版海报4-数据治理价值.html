@@ -36,7 +36,7 @@
     text-shadow: 0 0 30px rgba(60,170,255,.45); 
     text-align: center;}
   .subtitle { margin-top: calc(28 * var(--u)); font-size: calc(33 * var(--u));
-    letter-spacing: calc(2 * var(--u)); color: #dceeff; }
+    letter-spacing: calc(2 * var(--u)); color: #dceeff; text-align: center;}
   .subtitle em { font-style: normal; color: #35d3f0; font-weight: 700; }
 
   /* 分区标题：青色数字 + 竖线 + 白色标题 */
@@ -121,15 +121,15 @@
   .export-btn:hover { background: rgba(20,60,110,.95); color: #fff; }
   /* 打印导出:3:4 比例(页面 1080×1440),海报等比缩放居中,矢量高清 */
   @media print {
-    /* 用标准 A4 纸张:自定义纸张尺寸会让 Microsoft Print to PDF 输出 0 字节空文件 */
-    @page { size: A4 portrait; margin: 0; }
-    /* 强制保留背景色/渐变,否则白字落在白纸上会"消失" */
+    /* 打印页面与海报同比例 9:16,铺满画布无黑边(仅用于 Edge 无头导出) */
+    @page { size: 210mm 373.33mm; margin: 0; }
+    /* 强制保留背景色/渐变 */
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     .export-btn { display: none !important; }
     html, body { background: #050e1c !important; }
     .stage { display: block; min-height: 0; }
-    /* 海报按打印页高度等比(9:16)铺满单页并居中;打印对话框"缩放"选项可再调比例 */
-    .poster { --u: calc(100vh / 1920); width: calc(1080 * var(--u)); height: 100vh; margin: 0 auto; }
+    /* 海报按设计稿原始尺寸 1080×1920 完整铺满页面 */
+    .poster { --u: 1px; width: 1080px; height: 1920px; margin: 0; }
   }
 </style>
 </head>
@@ -266,7 +266,7 @@
       <p>治理不是成本，而是数据资产<span class="cy">价值释放</span>的底座</p>
     </div>
 
-    <div class="footer"><b>技术部</b><span>|</span>数据治理<span>|</span>数据清洗<span>|</span>数据交易</div>
+    <!-- <div class="footer"><b>技术部</b><span>|</span>数据治理<span>|</span>数据清洗<span>|</span>数据交易</div> -->
   </div>
 </div>
 </body>
