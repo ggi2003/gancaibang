@@ -12,11 +12,11 @@
   .stage { min-height: 100vh; display: flex; justify-content: center; }
 
   .poster {
-    /* --u 按宽度比例缩放;高度自适应视口,无黑边 */
+    /* 宽度自适应:--u 按宽度比例缩放;高度保持视口高度不变 */
     --u: calc(100vw / 1080);
     position: relative;
     width: 100vw;
-    height: max(calc(1920 * var(--u)), 100vh);
+    height: 100vh;
     background:
       radial-gradient(ellipse calc(900 * var(--u)) calc(500 * var(--u)) at 50% -6%, rgba(40,130,220,.45), transparent 65%),
       radial-gradient(ellipse calc(700 * var(--u)) calc(460 * var(--u)) at 100% 40%, rgba(25,90,180,.30), transparent 60%),
@@ -229,13 +229,15 @@
   .export-btn:hover { background: rgba(20,60,110,.95); color: #fff; }
   /* 打印导出:3:4 比例(页面 1080×1440),海报等比缩放居中,矢量高清 */
   @media print {
-    @page { size: 1080px 1440px; margin: 0; }
+    /* 用标准 A4 纸张:自定义纸张尺寸会让 Microsoft Print to PDF 输出 0 字节空文件 */
+    @page { size: A4 portrait; margin: 0; }
     /* 强制保留背景色/渐变,否则白字落在白纸上会"消失" */
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     .export-btn { display: none !important; }
     html, body { background: #071a33 !important; }
     .stage { display: block; min-height: 0; }
-    .poster { --u: 0.75px; width: calc(1080 * var(--u)); height: calc(1920 * var(--u)); margin: 0 auto; }
+    /* 海报按打印页高度等比(9:16)铺满单页并居中;打印对话框"缩放"选项可再调比例 */
+    .poster { --u: calc(100vh / 1920); width: calc(1080 * var(--u)); height: 100vh; margin: 0 auto; }
   }
 </style>
 </head>
