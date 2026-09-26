@@ -119,17 +119,18 @@
     box-shadow: 0 0 14px rgba(60,170,255,.35);
   }
   .export-btn:hover { background: rgba(20,60,110,.95); color: #fff; }
-  /* 打印导出:3:4 比例(页面 1080×1440),海报等比缩放居中,矢量高清 */
+  /* 打印导出:纸张与海报同比例 9:16,海报完整铺满整页,两侧无黑边 */
   @media print {
-    /* 打印页面与海报同比例 9:16,铺满画布无黑边(仅用于 Edge 无头导出) */
-    @page { size: 210mm 373.33mm; margin: 0; }
+    @page { size: 210mm 373.3mm; margin: 0; }
     /* 强制保留背景色/渐变 */
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     .export-btn { display: none !important; }
     html, body { background: #050e1c !important; }
     .stage { display: block; min-height: 0; }
-    /* 海报按设计稿原始尺寸 1080×1920 完整铺满页面 */
-    .poster { --u: 1px; width: 1080px; height: 1920px; margin: 0; }
+    /* SVG feGaussianBlur 滤镜会让无头打印失败,打印时改用等效 CSS 发光(屏幕仍用原 SVG 滤镜) */
+    .bgfx [filter] { filter: drop-shadow(0 0 3px rgba(120,220,255,.9)) !important; }
+    /* --u 按纸宽换算,海报 1080×1920 等比铺满整页(高度用 100vh 避免溢出产生第二页) */
+    .poster { --u: calc(210mm / 1080); width: calc(1080 * var(--u)); height: 100vh; margin: 0 auto; }
   }
 </style>
 </head>

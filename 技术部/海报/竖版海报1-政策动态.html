@@ -227,17 +227,16 @@
     box-shadow: 0 0 14px rgba(60,170,255,.35);
   }
   .export-btn:hover { background: rgba(20,60,110,.95); color: #fff; }
-  /* 打印导出:3:4 比例(页面 1080×1440),海报等比缩放居中,矢量高清 */
+  /* 打印导出:纸张与海报同比例 9:16,海报完整铺满整页,两侧无黑边 */
   @media print {
-    /* 用标准 A4 纸张:自定义纸张尺寸会让 Microsoft Print to PDF 输出 0 字节空文件 */
-    @page { size: A4 portrait; margin: 0; }
-    /* 强制保留背景色/渐变,否则白字落在白纸上会"消失" */
+    @page { size: 210mm 373.3mm; margin: 0; }
+    /* 强制保留背景色/渐变 */
     * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
     .export-btn { display: none !important; }
     html, body { background: #071a33 !important; }
     .stage { display: block; min-height: 0; }
-    /* 海报按打印页高度等比(9:16)铺满单页并居中;打印对话框"缩放"选项可再调比例 */
-    .poster { --u: calc(100vh / 1920); width: calc(1080 * var(--u)); height: 100vh; margin: 0 auto; }
+    /* --u 按纸宽换算,海报 1080×1920 等比铺满整页 */
+    .poster { --u: calc(210mm / 1080); width: calc(1080 * var(--u)); height: 100vh; margin: 0 auto; }
   }
 </style>
 </head>
