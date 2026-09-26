@@ -52,6 +52,10 @@
   /* 光弧光轨:背景星座网络连线 + 底部上方青色亮光线 */
   .constellation { position: absolute; inset: 0; pointer-events: none; opacity: .45; }
   .constellation svg { position: absolute; width: 100%; height: 100%; }
+  /* 阶梯卡片两侧空白装饰:菱形节点+引线+圆点(CSS 发光,打印安全) */
+  .ornaments { position: absolute; inset: 0; pointer-events: none; }
+  .ornaments svg { position: absolute; width: 100%; height: 100%; }
+  .ornaments .og { filter: drop-shadow(0 0 3px rgba(120,220,255,.9)); }
   .bottom-glow {
     position: absolute; left: 10%; right: 10%; bottom: calc(220 * var(--u)); height: 2px;
     background: linear-gradient(90deg, transparent, rgba(80,210,255,.9), transparent);
@@ -98,12 +102,16 @@
     background: #45d9ff; box-shadow: 0 0 14px #45d9ff;
   }
 
-  /* 卡片 */
+  /* 卡片:金字塔式阶梯布局,由上到下逐渐加宽 */
   .cards { position: absolute; left: calc(64 * var(--u)); right: calc(64 * var(--u));
     top: calc(560 * var(--u));
-    display: flex; flex-direction: column; gap: calc(26 * var(--u)); }
+    display: flex; flex-direction: column; align-items: center; gap: calc(26 * var(--u)); }
+  .cards .card:nth-child(1) { width: calc(640 * var(--u)); }
+  .cards .card:nth-child(2) { width: calc(760 * var(--u)); }
+  .cards .card:nth-child(3) { width: calc(880 * var(--u)); }
+  .cards .card:nth-child(4) { width: calc(1000 * var(--u)); }
   .card {
-    position: relative; padding: calc(26 * var(--u)) calc(36 * var(--u)) calc(24 * var(--u)) calc(120 * var(--u));
+    position: relative; padding: calc(22 * var(--u)) calc(36 * var(--u)) calc(20 * var(--u)) calc(120 * var(--u));
     border: calc(1.5 * var(--u)) solid rgba(120,200,255,.5);
     border-radius: calc(16 * var(--u));
     background: linear-gradient(150deg, rgba(52,110,180,.72) 0%, rgba(24,60,120,.68) 45%, rgba(10,32,70,.78) 100%);
@@ -111,6 +119,10 @@
                 0 0 calc(16 * var(--u)) rgba(50,150,240,.18),
                 inset 0 1px 0 rgba(190,240,255,.35);
   }
+  /* 卡片右端幽灵序号装饰 */
+  .card .idx { position: absolute; right: calc(34 * var(--u)); top: 50%; transform: translateY(-50%);
+    font-size: calc(58 * var(--u)); font-weight: 800; letter-spacing: 2px; line-height: 1;
+    color: rgba(120,200,255,.10); -webkit-text-stroke: 1px rgba(120,200,255,.30); }
 
   /* 圆形图标徽章(还原原图) */
   .card .icon {
@@ -132,11 +144,11 @@
   .card h3 .acc-g { color: #4fd08a; }
   .card h3 .acc-b { color: #5fb0ff; }
 
-  .card ul { margin-top: calc(14 * var(--u)); list-style: none; }
+  .card ul { margin-top: calc(10 * var(--u)); list-style: none; }
   .card li {
     position: relative; padding-left: calc(28 * var(--u));
-    font-size: calc(28 * var(--u)); line-height: 1.5; color: #b9d9f2; letter-spacing: 1px;
-    margin-bottom: calc(5 * var(--u));
+    font-size: calc(28 * var(--u)); line-height: 1.45; color: #b9d9f2; letter-spacing: 1px;
+    margin-bottom: calc(4 * var(--u)); white-space: nowrap;
   }
   .card li::before {
     content: ""; position: absolute; left: calc(4 * var(--u)); top: calc(14 * var(--u));
@@ -220,6 +232,36 @@
         <circle cx="160" cy="980" r="3" fill="#4fd0ff" filter="url(#cglow)"/>
       </svg>
     </div>
+    <!-- 阶梯卡片两侧空白装饰:菱形节点 + 引线 + 圆点 + 卡片间下行箭头 -->
+    <div class="ornaments">
+      <svg viewBox="0 0 1080 1920" fill="none" preserveAspectRatio="none">
+        <g stroke="rgba(80,200,255,.55)" stroke-width="1.5" stroke-linecap="round" class="og">
+          <!-- 第1排(最窄,两侧空 220) -->
+          <line x1="76" y1="675" x2="206" y2="675"/><line x1="874" y1="675" x2="1004" y2="675"/>
+          <!-- 第2排(两侧空 160) -->
+          <line x1="60" y1="931" x2="146" y2="931"/><line x1="934" y1="931" x2="1020" y2="931"/>
+          <!-- 第3排(两侧空 100) -->
+          <line x1="56" y1="1187" x2="88" y2="1187"/><line x1="992" y1="1187" x2="1024" y2="1187"/>
+          <!-- 十字标记 -->
+          <path d="M22 800h12M28 794v12"/><path d="M1046 1060h12M1052 1054v12"/>
+        </g>
+        <g fill="rgba(69,217,255,.28)" stroke="rgba(120,220,255,.9)" stroke-width="1.5" class="og">
+          <!-- 菱形节点 -->
+          <path d="M110 667l8 8-8 8-8-8z"/><path d="M970 667l8 8-8 8-8-8z"/>
+          <path d="M80 923l8 8-8 8-8-8z"/><path d="M1000 923l8 8-8 8-8-8z"/>
+        </g>
+        <g fill="#6fd4ff" class="og">
+          <circle cx="56" cy="675" r="3"/><circle cx="1024" cy="675" r="3"/>
+          <circle cx="40" cy="931" r="3"/><circle cx="1040" cy="931" r="3"/>
+          <circle cx="40" cy="1187" r="2.5"/><circle cx="1040" cy="1187" r="2.5"/>
+          <circle cx="24" cy="1443" r="2.5"/><circle cx="1056" cy="1443" r="2.5"/>
+        </g>
+        <!-- 卡片间下行箭头 -->
+        <g stroke="#45d9ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="og" opacity=".8">
+          <path d="M530 800l10 9 10-9"/><path d="M530 1056l10 9 10-9"/><path d="M530 1312l10 9 10-9"/>
+        </g>
+      </svg>
+    </div>
     <div class="beam b1"></div>
     <div class="beam b2"></div>
     <div class="bottom-glow"></div>
@@ -250,6 +292,7 @@
           </svg>
         </div>
         <h3>数据治理<span class="sep">·</span><span class="hl">质量为本</span></h3>
+        <span class="idx">01</span>
         <ul>
           <li class="first" >正本清源,去芜存菁</li>
           <li>数据质量是生命线</li>
@@ -266,6 +309,7 @@
           </svg>
         </div>
         <h3>可信流通<span class="sep">·</span><span class="acc-g">合规为先</span></h3>
+        <span class="idx">02</span>
         <ul>
           <li><b>数据可用不可见</b></li>
           <li>原始数据不出域</li>
@@ -283,6 +327,7 @@
           </svg>
         </div>
         <h3>行业前沿<span class="sep">·</span><span class="acc-b">模数共振</span></h3>
+        <span class="idx">03</span>
         <ul>
           <li><b>三权分置</b>:持有权 · 使用权 · 经营权</li>
           <li>高质量数据集就绪</li>
@@ -298,6 +343,7 @@
           </svg>
         </div>
         <h3>技术信条<span class="sep">·</span><span class="hlo">行为准则</span></h3>
+        <span class="idx">04</span>
         <ul>
           <li class="first">溯源可查,问题可改</li>
           <li>不产出脏数据,不流转不可信资产</li>

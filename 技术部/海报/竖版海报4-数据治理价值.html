@@ -110,6 +110,30 @@
     font-size: calc(30 * var(--u)); letter-spacing: calc(2 * var(--u)); color: rgba(200,230,255,.75); }
   .footer b { color: #fff; font-weight: 600; }
   .footer span { margin: 0 calc(10 * var(--u)); color: rgba(120,190,255,.5); }
+
+  /* 底部装饰:透视网格地面 + 上扬光弧 + 粒子 + 品牌行,填满底部空白 */
+  .floor { position: absolute; left: 0; right: 0; bottom: 0; height: calc(240 * var(--u)); pointer-events: none; }
+  .floor-grid { position: absolute; left: -15%; right: -15%; bottom: 0; height: calc(200 * var(--u));
+    background:
+      linear-gradient(rgba(53,211,240,.14) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(53,211,240,.14) 1px, transparent 1px);
+    background-size: 100% calc(26 * var(--u)), calc(64 * var(--u)) 100%;
+    transform: perspective(420px) rotateX(56deg); transform-origin: bottom center;
+    mask-image: linear-gradient(180deg, transparent, #000 50%);
+    -webkit-mask-image: linear-gradient(180deg, transparent, #000 50%);
+    opacity: .7; }
+  .floor-arc { position: absolute; inset: 0; }
+  .floor-arc svg { width: 100%; height: 100%; }
+  .floor .fdots i { position: absolute; border-radius: 50%; background: #6fe4ff;
+    box-shadow: 0 0 calc(8 * var(--u)) calc(2 * var(--u)) rgba(80,210,255,.9); }
+  .floor .brandline { position: absolute; left: 0; right: 0; bottom: calc(42 * var(--u));
+    display: flex; align-items: center; justify-content: center; gap: calc(24 * var(--u)); }
+  .floor .brandline .bl { width: calc(120 * var(--u)); height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(53,211,240,.7)); }
+  .floor .brandline .br { width: calc(120 * var(--u)); height: 1px;
+    background: linear-gradient(90deg, rgba(53,211,240,.7), transparent); }
+  .floor .brandline p { font-size: calc(24 * var(--u)); letter-spacing: calc(6 * var(--u));
+    color: rgba(140,200,235,.6); white-space: nowrap; }
   /* 导出 PDF 按钮(打印时隐藏) */
   .export-btn {
     position: fixed; right: 24px; bottom: 24px; z-index: 99;
@@ -265,6 +289,36 @@
 
     <div class="banner">
       <p>治理不是成本，而是数据资产<span class="cy">价值释放</span>的底座</p>
+    </div>
+
+    <!-- 底部装饰:透视网格地面 + 上扬光弧 + 发光粒子 + 品牌行 -->
+    <div class="floor">
+      <div class="floor-grid"></div>
+      <div class="floor-arc">
+        <svg viewBox="0 0 1080 240" fill="none" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="fg" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#35d3f0" stop-opacity="0"/>
+              <stop offset=".5" stop-color="#35d3f0" stop-opacity=".9"/>
+              <stop offset="1" stop-color="#35d3f0" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M -20 200 Q 270 90 540 150 T 1100 120" stroke="url(#fg)" stroke-width="2" opacity=".7"/>
+          <path d="M -20 220 Q 360 130 720 175 T 1100 160" stroke="url(#fg)" stroke-width="1.5" opacity=".4"/>
+        </svg>
+      </div>
+      <div class="fdots">
+        <i style="left:16%; bottom:calc(70*var(--u)); width:calc(4*var(--u)); height:calc(4*var(--u));"></i>
+        <i style="left:34%; bottom:calc(120*var(--u)); width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.7;"></i>
+        <i style="left:55%; bottom:calc(90*var(--u)); width:calc(5*var(--u)); height:calc(5*var(--u)); opacity:.8;"></i>
+        <i style="left:74%; bottom:calc(130*var(--u)); width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+        <i style="left:88%; bottom:calc(80*var(--u)); width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+      </div>
+      <div class="brandline">
+        <div class="bl"></div>
+        <p>技术部 · 数据治理 · 辅助确权 · 代理交易</p>
+        <div class="br"></div>
+      </div>
     </div>
 
     <!-- <div class="footer"><b>技术部</b><span>|</span>数据治理<span>|</span>数据清洗<span>|</span>数据交易</div> -->
