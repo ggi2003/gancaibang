@@ -51,7 +51,7 @@ for %%f in ("竖版海报1-政策动态.html" "竖版海报2-行业趋势.html" 
   del "%%~dpnf.pdf" 2>nul
   copy /y "%%~ff" "!TMPF!" >nul
   REM inject custom page size; poster fits page by width or height, background fills the rest (no black edges)
-  powershell -NoProfile -Command "$pw=[double]'%PW%'; $ph=[double]'%PH%'; $c=Get-Content -Raw -Encoding UTF8 -LiteralPath '!TMPF!'; $c=$c -replace '@page \{ size: [0-9.]+mm [0-9.]+mm;', ('@page { size: '+$pw+'mm '+$ph+'mm;'); if($pw*1920 -le $ph*1080*1.001){$u='calc('+$pw+'mm / 1080)'}else{$u='calc('+$ph+'mm / 1920)'}; $c=$c -replace 'calc\(210mm / 1080\)', $u; Set-Content -LiteralPath '!TMPF!' -Value $c -Encoding UTF8 -NoNewline"
+  powershell -NoProfile -Command "$c=Get-Content -Raw -Encoding UTF8 -LiteralPath '!TMPF!'; $c=$c -replace '@page \{ size: [0-9.]+mm [0-9.]+mm;', ('@page { size: %PW%mm %PH%mm;'); Set-Content -LiteralPath '!TMPF!' -Value $c -Encoding UTF8 -NoNewline"
   "%EDGE%" --headless --disable-gpu --user-data-dir="!UDD!" --print-to-pdf="%%~dpnf.pdf" "!TMPF!" 2>nul
   if not exist "%%~dpnf.pdf" timeout /t 6 /nobreak >nul
   if exist "%%~dpnf.pdf" (
