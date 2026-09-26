@@ -125,12 +125,26 @@
           </linearGradient>
           <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
         </defs>
+        <!-- S 形光轨束：宽底光 + 主弧 + 多条平行弧 -->
         <path d="M 1080 560 C 950 640 880 760 930 880 C 975 990 900 1080 740 1110 C 520 1150 300 1090 -30 1070"
-              stroke="url(#sg)" stroke-width="3" filter="url(#glow)"/>
-        <path d="M 1080 600 C 970 680 910 780 955 890 C 995 995 930 1100 770 1135 C 560 1180 330 1120 -30 1100"
-              stroke="url(#sg)" stroke-width="1.5" opacity=".6" filter="url(#glow)"/>
-        <circle cx="930" cy="880" r="5" fill="#b8f2ff" filter="url(#glow)"/>
-        <circle cx="740" cy="1110" r="4" fill="#8feaff" filter="url(#glow)"/>
+              stroke="url(#sg)" stroke-width="18" opacity=".22" filter="url(#glow)"/>
+        <path d="M 1080 560 C 950 640 880 760 930 880 C 975 990 900 1080 740 1110 C 520 1150 300 1090 -30 1070"
+              stroke="url(#sg)" stroke-width="7" filter="url(#glow)"/>
+        <path d="M 1080 605 C 965 685 905 780 952 890 C 996 996 930 1102 772 1136 C 560 1182 330 1122 -30 1102"
+              stroke="url(#sg)" stroke-width="4" opacity=".85" filter="url(#glow)"/>
+        <path d="M 1080 650 C 980 725 928 805 970 902 C 1010 1002 955 1118 800 1158 C 600 1206 360 1152 -30 1132"
+              stroke="url(#sg)" stroke-width="2.5" opacity=".6" filter="url(#glow)"/>
+        <path d="M 1080 515 C 925 600 850 745 905 872 C 952 985 872 1062 712 1088 C 500 1122 280 1062 -30 1042"
+              stroke="url(#sg)" stroke-width="2" opacity=".5" filter="url(#glow)"/>
+        <path d="M 1080 700 C 995 765 950 830 988 915 C 1024 1010 978 1130 828 1178 C 640 1230 400 1180 -30 1160"
+              stroke="url(#sg)" stroke-width="1.5" opacity=".4" filter="url(#glow)"/>
+        <!-- 光轨沿线发光粒子 -->
+        <circle cx="930" cy="880" r="7" fill="#b8f2ff" filter="url(#glow)"/>
+        <circle cx="740" cy="1110" r="5" fill="#8feaff" filter="url(#glow)"/>
+        <circle cx="1005" cy="700" r="4" fill="#9feaff" filter="url(#glow)"/>
+        <circle cx="860" cy="1030" r="4" fill="#8feaff" opacity=".8" filter="url(#glow)"/>
+        <circle cx="560" cy="1128" r="3.5" fill="#7fe0ff" opacity=".7" filter="url(#glow)"/>
+        <circle cx="240" cy="1082" r="3" fill="#7fe0ff" opacity=".6" filter="url(#glow)"/>
         <!-- 左右边缘点阵 -->
         <g fill="rgba(90,190,255,.35)">
           <circle cx="30" cy="700" r="2"/><circle cx="30" cy="740" r="2"/><circle cx="30" cy="780" r="2"/>
