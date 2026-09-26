@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>数据治理：从合规成本到价值引擎</title>
+<style>
+  /* 纯 CSS 自适应：--u = 设计稿 1px，随视口宽度缩放，无需 JS */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { background: #050e1c;
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", sans-serif; }
+  .stage { min-height: 100vh; display: flex; justify-content: center; }
+
+  .poster {
+    --u: calc(100vw / 1080);
+    position: relative; width: 100vw;
+    height: max(calc(1920 * var(--u)), 100vh);
+    background:
+      radial-gradient(ellipse calc(900 * var(--u)) calc(500 * var(--u)) at 50% -6%, rgba(30,110,200,.38), transparent 65%),
+      radial-gradient(ellipse calc(800 * var(--u)) calc(620 * var(--u)) at 104% 48%, rgba(20,95,185,.28), transparent 60%),
+      radial-gradient(ellipse calc(1000 * var(--u)) calc(560 * var(--u)) at 50% 108%, rgba(30,130,220,.30), transparent 62%),
+      linear-gradient(180deg, #061224 0%, #081c38 45%, #061224 78%, #040d1a 100%);
+    color: #eaf6ff; overflow: hidden;
+  }
+
+  /* 背景装饰：S 形光轨 + 粒子 + 点阵 */
+  .bgfx { position: absolute; inset: 0; pointer-events: none; }
+  .bgfx svg { position: absolute; width: 100%; height: 100%; }
+  .dots i { position: absolute; border-radius: 50%; background: #6fd4ff;
+    box-shadow: 0 0 8px 1px rgba(90,200,255,.8); opacity: .8; }
+
+  /* 头部 */
+  .head { padding: calc(110 * var(--u)) calc(64 * var(--u)) 0; }
+  .title { font-size: calc(62 * var(--u)); font-weight: 800; letter-spacing: calc(2 * var(--u));
+    text-shadow: 0 0 30px rgba(60,170,255,.45); }
+  .subtitle { margin-top: calc(28 * var(--u)); font-size: calc(33 * var(--u));
+    letter-spacing: calc(2 * var(--u)); color: #dceeff; }
+  .subtitle em { font-style: normal; color: #35d3f0; font-weight: 700; }
+
+  /* 分区标题：青色数字 + 竖线 + 白色标题 */
+  .sec { display: flex; align-items: center; gap: calc(16 * var(--u));
+    margin: calc(64 * var(--u)) calc(64 * var(--u)) 0;
+    font-size: calc(40 * var(--u)); font-weight: 800; letter-spacing: calc(2 * var(--u)); }
+  .sec .num { color: #35d3f0; }
+  .sec .bar { width: calc(4 * var(--u)); height: calc(38 * var(--u)); background: #35d3f0;
+    box-shadow: 0 0 10px rgba(53,211,240,.8); }
+  .sec .cy { color: #35d3f0; }
+
+  /* 时间线 */
+  .timeline { position: relative; display: flex; justify-content: space-between;
+    margin: calc(56 * var(--u)) calc(80 * var(--u)) 0; }
+  .timeline::before { content: ""; position: absolute; top: calc(52 * var(--u));
+    left: calc(140 * var(--u)); right: calc(140 * var(--u)); height: 2px;
+    background: linear-gradient(90deg, rgba(70,200,255,.15), rgba(70,200,255,.6) 20%, rgba(70,200,255,.6) 80%, rgba(70,200,255,.15)); }
+  .tnode { width: calc(280 * var(--u)); }
+  .tnode .hex { display: block; margin: 0 auto; width: calc(104 * var(--u)); height: calc(104 * var(--u));
+    filter: drop-shadow(0 0 calc(10 * var(--u)) rgba(70,200,255,.5)); }
+  .tnode .year { margin-top: calc(26 * var(--u)); font-size: calc(31 * var(--u)); font-weight: 800; }
+  .tnode .year b { color: #35d3f0; font-weight: 800; margin-left: calc(8 * var(--u)); }
+  .tnode p { margin-top: calc(10 * var(--u)); font-size: calc(28 * var(--u)); line-height: 1.45;
+    color: #d8ecff; letter-spacing: 1px; }
+
+  /* 问题卡：倾斜玻璃白卡 */
+  .problems { display: flex; gap: calc(26 * var(--u)); margin: calc(56 * var(--u)) calc(56 * var(--u)) 0; }
+  .pcard { flex: 1; padding: calc(30 * var(--u)) calc(26 * var(--u));
+    border-radius: calc(14 * var(--u));
+    background: linear-gradient(160deg, #ffffff 0%, #e2f1fc 40%, #a6d2ef 100%);
+    border: 1px solid rgba(170,225,255,.95);
+    box-shadow: 0 0 calc(26 * var(--u)) rgba(80,200,255,.55), 0 calc(10 * var(--u)) calc(24 * var(--u)) rgba(0,10,30,.45);
+  }
+  .pcard:nth-child(1) { transform: rotate(-4deg); }
+  .pcard:nth-child(2) { transform: rotate(3deg) translateY(calc(12 * var(--u))); }
+  .pcard:nth-child(3) { transform: rotate(-3deg) translateY(calc(4 * var(--u))); }
+  .pcard:nth-child(4) { transform: rotate(4deg) translateY(calc(14 * var(--u))); }
+  .pcard h3 { font-size: calc(30 * var(--u)); font-weight: 800; color: #0a3a75; letter-spacing: 1px; }
+  .pcard p { margin-top: calc(14 * var(--u)); font-size: calc(27 * var(--u)); line-height: 1.5;
+    color: #14508c; letter-spacing: .5px; }
+
+  /* 高涨原因：白色正卡 + 青色箭头 */
+  .whys { display: flex; align-items: stretch; gap: calc(14 * var(--u));
+    margin: calc(56 * var(--u)) calc(56 * var(--u)) 0; }
+  .wcard { flex: 1; padding: calc(30 * var(--u)) calc(26 * var(--u));
+    border-radius: calc(10 * var(--u));
+    background: linear-gradient(180deg, #ffffff 0%, #eef6fd 60%, #dcebf8 100%);
+    border: 1px solid rgba(160,215,250,.9);
+    box-shadow: 0 0 calc(18 * var(--u)) rgba(70,190,255,.4), 0 calc(8 * var(--u)) calc(20 * var(--u)) rgba(0,10,30,.4); }
+  .wcard h3 { font-size: calc(30 * var(--u)); font-weight: 800; color: #0a3a75; letter-spacing: 1px; }
+  .wcard p { margin-top: calc(14 * var(--u)); font-size: calc(27 * var(--u)); line-height: 1.5;
+    color: #14508c; letter-spacing: .5px; }
+  .warrow { align-self: center; width: 0; height: 0;
+    border-left: calc(14 * var(--u)) solid #35d3f0;
+    border-top: calc(10 * var(--u)) solid transparent;
+    border-bottom: calc(10 * var(--u)) solid transparent;
+    filter: drop-shadow(0 0 calc(6 * var(--u)) rgba(53,211,240,.8)); }
+
+  /* 底部斜切横幅 */
+  .banner { margin: calc(72 * var(--u)) auto 0; width: calc(940 * var(--u));
+    padding: calc(26 * var(--u)) calc(30 * var(--u));
+    transform: skewX(-14deg);
+    border: 1px solid rgba(70,200,255,.75); border-radius: calc(6 * var(--u));
+    background: linear-gradient(90deg, rgba(10,40,80,.85), rgba(12,50,95,.75));
+    box-shadow: 0 0 calc(22 * var(--u)) rgba(60,180,255,.4), inset 0 0 calc(22 * var(--u)) rgba(60,160,255,.18); }
+  .banner p { transform: skewX(14deg); text-align: center;
+    font-size: calc(34 * var(--u)); font-weight: 800; letter-spacing: calc(2 * var(--u)); }
+  .banner .cy { color: #35d3f0; }
+
+  .footer { position: absolute; right: calc(64 * var(--u)); bottom: calc(46 * var(--u));
+    font-size: calc(22 * var(--u)); letter-spacing: calc(2 * var(--u)); color: rgba(200,230,255,.75); }
+  .footer b { color: #fff; font-weight: 600; }
+  .footer span { margin: 0 calc(10 * var(--u)); color: rgba(120,190,255,.5); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="poster">
+    <!-- 背景：S 形光轨 + 发光粒子 + 边缘点阵 -->
+    <div class="bgfx">
+      <svg viewBox="0 0 1080 1920" fill="none" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="sg" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#4fd0ff" stop-opacity="0"/>
+            <stop offset="35%" stop-color="#6fdcff" stop-opacity=".8"/>
+            <stop offset="70%" stop-color="#3fb8f0" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#4fd0ff" stop-opacity="0"/>
+          </linearGradient>
+          <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
+        <path d="M 1080 560 C 950 640 880 760 930 880 C 975 990 900 1080 740 1110 C 520 1150 300 1090 -30 1070"
+              stroke="url(#sg)" stroke-width="3" filter="url(#glow)"/>
+        <path d="M 1080 600 C 970 680 910 780 955 890 C 995 995 930 1100 770 1135 C 560 1180 330 1120 -30 1100"
+              stroke="url(#sg)" stroke-width="1.5" opacity=".6" filter="url(#glow)"/>
+        <circle cx="930" cy="880" r="5" fill="#b8f2ff" filter="url(#glow)"/>
+        <circle cx="740" cy="1110" r="4" fill="#8feaff" filter="url(#glow)"/>
+        <!-- 左右边缘点阵 -->
+        <g fill="rgba(90,190,255,.35)">
+          <circle cx="30" cy="700" r="2"/><circle cx="30" cy="740" r="2"/><circle cx="30" cy="780" r="2"/>
+          <circle cx="60" cy="720" r="2"/><circle cx="60" cy="760" r="2"/>
+          <circle cx="1050" cy="1300" r="2"/><circle cx="1050" cy="1340" r="2"/><circle cx="1050" cy="1380" r="2"/>
+          <circle cx="1020" cy="1320" r="2"/><circle cx="1020" cy="1360" r="2"/>
+        </g>
+      </svg>
+      <div class="dots">
+        <i style="left:12%; top:6%;  width:calc(4*var(--u)); height:calc(4*var(--u));"></i>
+        <i style="left:86%; top:9%;  width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.6;"></i>
+        <i style="left:70%; top:38%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.7;"></i>
+        <i style="left:8%;  top:56%; width:calc(3*var(--u)); height:calc(3*var(--u)); opacity:.5;"></i>
+        <i style="left:92%; top:70%; width:calc(4*var(--u)); height:calc(4*var(--u)); opacity:.6;"></i>
+      </div>
+    </div>
+
+    <div class="head">
+      <h1 class="title">数据治理：从合规成本到价值引擎</h1>
+      <p class="subtitle">从概念起源、历史难题，<em>看2026年数据要素行业高涨</em></p>
+    </div>
+
+    <div class="sec"><span class="num">1</span><span class="bar"></span>数据治理从哪里来</div>
+    <div class="timeline">
+      <div class="tnode">
+        <svg class="hex" viewBox="0 0 104 104" fill="none">
+          <path d="M52 6l38 22v44L52 94 14 72V28L52 6z" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="42" cy="38" r="3" fill="#7fe0ff"/><circle cx="56" cy="34" r="3" fill="#7fe0ff"/><circle cx="62" cy="44" r="3" fill="#7fe0ff"/>
+          <path d="M38 52h28l-6 10H44l-6-10z" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M48 62v8M56 62v8" stroke="#7fe0ff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="year">1988<b>|</b></div>
+        <p>数据质量管理理论起步</p>
+      </div>
+      <div class="tnode">
+        <svg class="hex" viewBox="0 0 104 104" fill="none">
+          <path d="M52 6l38 22v44L52 94 14 72V28L52 6z" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <circle cx="52" cy="50" r="10" stroke="#7fe0ff" stroke-width="2.5"/>
+          <path d="M52 34v6M52 60v6M36 50h6M62 50h6M41 39l4 4M59 57l4 4M63 39l-4 4M45 57l-4 4" stroke="#7fe0ff" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <div class="year">2002<b>|</b></div>
+        <p>数据治理概念正式出现</p>
+      </div>
+      <div class="tnode">
+        <svg class="hex" viewBox="0 0 104 104" fill="none">
+          <path d="M52 6l38 22v44L52 94 14 72V28L52 6z" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M52 32l20 10-20 10-20-10 20-10z" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+          <path d="M32 52l20 10 20-10M32 62l20 10 20-10" stroke="#7fe0ff" stroke-width="2.5" stroke-linejoin="round"/>
+        </svg>
+        <div class="year">2015<b>|</b></div>
+        <p>国内大数据国家战略启动</p>
+      </div>
+    </div>
+
+    <div class="sec"><span class="num">2</span><span class="bar"></span>发展中遇到的重大问题</div>
+    <div class="problems">
+      <div class="pcard">
+        <h3>数据孤岛：</h3>
+        <p>系统异构、口径不一、统计打架</p>
+      </div>
+      <div class="pcard">
+        <h3>权责不清：</h3>
+        <p>业务参与弱，治理容易变成IT独角戏</p>
+      </div>
+      <div class="pcard">
+        <h3>产权与流通矛盾：</h3>
+        <p>一管就死，一放就乱</p>
+      </div>
+      <div class="pcard">
+        <h3>AI质量挑战：</h3>
+        <p>脏数据导致模型幻觉与偏见</p>
+      </div>
+    </div>
+
+    <div class="sec"><span class="num">3</span><span class="bar"></span>为什么<span class="cy">2026年</span>行业高涨</div>
+    <div class="whys">
+      <div class="wcard">
+        <h3>政策闭环：</h3>
+        <p>产权登记、资产入表、数据要素制度进入落地期</p>
+      </div>
+      <div class="warrow"></div>
+      <div class="wcard">
+        <h3>AI刚需：</h3>
+        <p>大模型拉动高质量数据集、清洗、标注与质检需求</p>
+      </div>
+      <div class="warrow"></div>
+      <div class="wcard">
+        <h3>商业变现：</h3>
+        <p>治理形成资产，资产进入交易与流通闭环</p>
+      </div>
+    </div>
+
+    <div class="banner">
+      <p>治理不是成本，而是数据资产<span class="cy">价值释放</span>的底座</p>
+    </div>
+
+    <div class="footer"><b>技术部</b><span>|</span>数据治理<span>|</span>数据清洗<span>|</span>数据交易</div>
+  </div>
+</div>
+</body>
+</html>
