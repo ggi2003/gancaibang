@@ -14,7 +14,7 @@
   .deck { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
   .slide {
     position: absolute; width: calc(1920 * var(--u)); height: calc(1080 * var(--u));
-    padding: calc(70 * var(--u)) calc(110 * var(--u));
+    padding: calc(64 * var(--u)) calc(110 * var(--u));
     display: none; flex-direction: column; overflow: hidden;
     background:
       radial-gradient(ellipse calc(900 * var(--u)) calc(520 * var(--u)) at 50% -10%, rgba(40,130,220,.40), transparent 65%),
@@ -41,10 +41,10 @@
     font-size: calc(24 * var(--u)); letter-spacing: calc(4 * var(--u)); color: #bfe6ff;
     box-shadow: 0 0 14px rgba(50,150,255,.22); }
   .kicker .no { color: #45d9ff; font-weight: 800; }
-  h2.pagetitle { margin-top: calc(28 * var(--u)); font-size: calc(52 * var(--u)); font-weight: 800;
+  h2.pagetitle { margin-top: calc(24 * var(--u)); font-size: calc(50 * var(--u)); font-weight: 800;
     letter-spacing: calc(2 * var(--u)); text-shadow: 0 0 24px rgba(60,170,255,.4); }
   h2.pagetitle .cy { color: #45d9ff; } h2.pagetitle .or { color: #ffa53e; }
-  .lead { margin-top: calc(16 * var(--u)); font-size: calc(26 * var(--u)); color: #a8cfee; letter-spacing: 1px; }
+  .lead { margin-top: calc(14 * var(--u)); font-size: calc(25 * var(--u)); color: #a8cfee; letter-spacing: 1px; line-height: 1.6; }
 
   /* 公司/人物标签 */
   .who { display: inline-flex; align-items: center; gap: calc(8 * var(--u));
@@ -60,20 +60,30 @@
   .who.cyan b { color: #45d9ff; }
 
   /* 通用卡片 */
-  .grid { display: grid; gap: calc(24 * var(--u)); margin-top: calc(36 * var(--u)); }
-  .card { position: relative; padding: calc(28 * var(--u)) calc(32 * var(--u));
+  .grid { display: grid; gap: calc(22 * var(--u)); margin-top: calc(30 * var(--u)); }
+  .card { position: relative; padding: calc(24 * var(--u)) calc(30 * var(--u));
     border: 1px solid rgba(120,200,255,.45); border-radius: calc(14 * var(--u));
     background: linear-gradient(155deg, rgba(52,110,180,.60) 0%, rgba(24,60,120,.55) 45%, rgba(10,32,70,.65) 100%);
     box-shadow: 0 calc(8 * var(--u)) calc(22 * var(--u)) rgba(0,5,20,.45), inset 0 1px 0 rgba(190,240,255,.28); }
-  .card h3 { font-size: calc(28 * var(--u)); font-weight: 700; letter-spacing: 1px; }
+  .card h3 { font-size: calc(27 * var(--u)); font-weight: 700; letter-spacing: 1px; }
   .card h3 .cy { color: #45d9ff; } .card h3 .or { color: #ffa53e; }
-  .card p { margin-top: calc(12 * var(--u)); font-size: calc(22 * var(--u)); line-height: 1.65; color: #b9d9f2; }
-  .card .tagrow { margin-top: calc(14 * var(--u)); display: flex; flex-wrap: wrap; gap: calc(10 * var(--u)); }
+  .card p { margin-top: calc(10 * var(--u)); font-size: calc(21 * var(--u)); line-height: 1.6; color: #b9d9f2; }
+  .card .tagrow { margin-top: calc(12 * var(--u)); display: flex; flex-wrap: wrap; gap: calc(10 * var(--u)); }
   .card.light { background: linear-gradient(160deg, #ffffff 0%, #e2f1fc 45%, #b9dcf2 100%);
     border-color: rgba(170,225,255,.95);
     box-shadow: 0 0 calc(22 * var(--u)) rgba(80,200,255,.5), 0 calc(8 * var(--u)) calc(20 * var(--u)) rgba(0,10,30,.4); }
   .card.light h3 { color: #0a3a75; }
   .card.light p { color: #14508c; }
+  /* 警示卡 */
+  .card.warn { border-color: rgba(255,110,110,.55);
+    background: linear-gradient(155deg, rgba(120,32,40,.55) 0%, rgba(70,18,28,.6) 100%);
+    box-shadow: 0 calc(8 * var(--u)) calc(22 * var(--u)) rgba(30,0,5,.5); }
+  .card.warn h3 { color: #ff9a9a; }
+  .card.warn p { color: #f2c3c3; }
+  /* 紧凑卡 */
+  .card.sm { padding: calc(14 * var(--u)) calc(18 * var(--u)); border-radius: calc(10 * var(--u)); }
+  .card.sm h3 { font-size: calc(21 * var(--u)); }
+  .card.sm p { margin-top: calc(5 * var(--u)); font-size: calc(17 * var(--u)); line-height: 1.45; }
 
   /* 封面 */
   .cover { align-items: center; justify-content: center; text-align: center; }
@@ -90,40 +100,60 @@
   .cover .meta { margin-top: calc(30 * var(--u)); font-size: calc(22 * var(--u)); letter-spacing: calc(4 * var(--u)); color: rgba(140,190,230,.6); }
 
   /* 时间线 */
-  .timeline { margin-top: calc(44 * var(--u)); position: relative; padding-top: calc(36 * var(--u));
-    display: flex; gap: calc(20 * var(--u)); }
+  .timeline { margin-top: calc(40 * var(--u)); position: relative; padding-top: calc(36 * var(--u));
+    display: flex; gap: calc(14 * var(--u)); }
   .timeline::before { content: ""; position: absolute; left: 0; right: 0; top: calc(8 * var(--u)); height: 2px;
     background: linear-gradient(90deg, transparent, rgba(69,217,255,.8), transparent); }
   .tnode { flex: 1; text-align: center; position: relative; }
   .tnode::before { content: ""; position: absolute; top: calc(-33 * var(--u)); left: 50%; transform: translateX(-50%) rotate(45deg);
     width: calc(12 * var(--u)); height: calc(12 * var(--u)); background: #45d9ff; box-shadow: 0 0 12px #45d9ff; }
-  .tnode .yr { font-size: calc(30 * var(--u)); font-weight: 800; color: #45d9ff; letter-spacing: 1px; }
-  .tnode p { margin-top: calc(10 * var(--u)); font-size: calc(21 * var(--u)); line-height: 1.55; color: #b9d9f2; }
+  .tnode .yr { font-size: calc(28 * var(--u)); font-weight: 800; color: #45d9ff; letter-spacing: 1px; }
+  .tnode p { margin-top: calc(8 * var(--u)); font-size: calc(18 * var(--u)); line-height: 1.45; color: #b9d9f2; }
 
   /* 流程链 */
-  .flow { margin-top: calc(40 * var(--u)); display: flex; align-items: stretch; gap: calc(12 * var(--u)); }
-  .fstep { flex: 1; position: relative; padding: calc(20 * var(--u)) calc(16 * var(--u)) calc(16 * var(--u));
+  .flow { margin-top: calc(30 * var(--u)); display: flex; align-items: stretch; gap: calc(10 * var(--u)); }
+  .fstep { flex: 1; position: relative; padding: calc(16 * var(--u)) calc(12 * var(--u)) calc(13 * var(--u));
     border: 1px solid rgba(120,200,255,.45); border-radius: calc(12 * var(--u));
-    background: linear-gradient(160deg, rgba(24,60,120,.55), rgba(10,32,70,.6)); text-align: center; }
-  .fstep .fn { font-size: calc(17 * var(--u)); color: #45d9ff; letter-spacing: 2px; }
-  .fstep h4 { margin-top: calc(6 * var(--u)); font-size: calc(25 * var(--u)); font-weight: 700; }
-  .fstep p { margin-top: calc(8 * var(--u)); font-size: calc(18 * var(--u)); line-height: 1.5; color: #9cc3e8; }
-  .fstep .who { margin-top: calc(10 * var(--u)); font-size: calc(16 * var(--u)); }
+    background: linear-gradient(160deg, rgba(24,60,120,.55), rgba(10,32,70,.6)); text-align: center;
+    display: flex; flex-direction: column; justify-content: center; }
+  .fstep .fn { font-size: calc(16 * var(--u)); color: #45d9ff; letter-spacing: 2px; }
+  .fstep h4 { margin-top: calc(5 * var(--u)); font-size: calc(23 * var(--u)); font-weight: 700; }
+  .fstep p { margin-top: calc(6 * var(--u)); font-size: calc(16.5 * var(--u)); line-height: 1.4; color: #9cc3e8; }
+  .fstep .who { margin-top: calc(8 * var(--u)); font-size: calc(15 * var(--u)); align-self: center; }
   .farr { align-self: center; width: 0; height: 0; border-left: calc(12 * var(--u)) solid #35d3f0;
     border-top: calc(9 * var(--u)) solid transparent; border-bottom: calc(9 * var(--u)) solid transparent;
     filter: drop-shadow(0 0 6px rgba(53,211,240,.8)); flex: none; }
 
   /* 大数字/图表条 */
-  .bars { margin-top: calc(30 * var(--u)); display: flex; flex-direction: column; gap: calc(18 * var(--u)); }
+  .bars { margin-top: calc(26 * var(--u)); display: flex; flex-direction: column; gap: calc(15 * var(--u)); }
   .brow { display: flex; align-items: center; gap: calc(20 * var(--u)); }
-  .brow .blab { width: calc(220 * var(--u)); text-align: right; font-size: calc(22 * var(--u)); color: #b9d9f2; }
-  .brow .btrack { flex: 1; height: calc(38 * var(--u)); border-radius: calc(8 * var(--u));
+  .brow .blab { width: calc(320 * var(--u)); text-align: right; font-size: calc(21 * var(--u)); color: #b9d9f2; }
+  .brow .btrack { flex: 1; height: calc(34 * var(--u)); border-radius: calc(8 * var(--u));
     background: rgba(10,40,80,.55); border: 1px solid rgba(120,200,255,.25); overflow: hidden; }
   .brow .bfill { height: 100%; border-radius: calc(8 * var(--u));
     background: linear-gradient(90deg, #1d6fd6, #45d9ff); box-shadow: 0 0 16px rgba(69,217,255,.5); }
   .brow .bfill.or { background: linear-gradient(90deg, #d67a1d, #ffb45a); box-shadow: 0 0 16px rgba(255,180,90,.5); }
-  .brow .bval { width: calc(220 * var(--u)); font-size: calc(24 * var(--u)); font-weight: 700; color: #45d9ff; }
+  .brow .bval { width: calc(230 * var(--u)); font-size: calc(22 * var(--u)); font-weight: 700; color: #45d9ff; }
   .brow .bval.or { color: #ffa53e; }
+
+  /* 术语胶囊 */
+  .pills { display: flex; flex-wrap: wrap; gap: calc(9 * var(--u)); margin-top: calc(12 * var(--u)); }
+  .pill { display: inline-flex; align-items: baseline; gap: calc(6 * var(--u));
+    padding: calc(6 * var(--u)) calc(15 * var(--u)); border-radius: calc(18 * var(--u));
+    border: 1px solid rgba(69,217,255,.35); background: rgba(12,45,80,.5);
+    font-size: calc(19 * var(--u)); color: #bfe6ff; }
+  .pill b { color: #45d9ff; font-weight: 700; font-size: calc(20 * var(--u)); }
+  .pill i { font-style: normal; color: #8fb8dd; font-size: calc(16 * var(--u)); }
+
+  /* 对比页 */
+  .duo { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: calc(26 * var(--u)); margin-top: calc(30 * var(--u)); }
+  .vs { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); z-index: 2;
+    width: calc(84 * var(--u)); height: calc(84 * var(--u)); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: calc(30 * var(--u)); font-weight: 900; color: #fff;
+    background: radial-gradient(circle at 35% 30%, #1d6fd6, #0a2c5e);
+    border: 2px solid rgba(120,220,255,.7); box-shadow: 0 0 26px rgba(69,217,255,.65); }
+  .duo .card h3 { text-align: center; }
 
   /* 发问页 */
   .question { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
@@ -166,13 +196,15 @@
   <section class="slide">
     <div class="kicker"><span class="no">00</span>课程脉络</div>
     <h2 class="pagetitle">我们今天<span class="cy">讲什么</span>?</h2>
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr);">
-      <div class="card"><h3><span class="cy">01</span> 政策引子</h3><p>最新政策动态频出,"数据治理"为何成为国家级热词?</p></div>
-      <div class="card"><h3><span class="cy">02</span> 发问:什么叫数据治理</h3><p>用 3 个行业真实案例,给抽象概念一个具体的答案。</p></div>
-      <div class="card"><h3><span class="cy">03</span> 前世今生</h3><p>从 1988 到 2026,梳理数据治理近 40 年的演进脉络。</p></div>
-      <div class="card"><h3><span class="cy">04</span> 专有名词详解</h3><p>数据中台、数据要素、数据资产入表、可信数据空间……逐个拆解。</p></div>
-      <div class="card"><h3><span class="cy">05</span> 业务流程闭环</h3><p>从数据采集到数据交易,数据如何走完一生并产生价值。</p></div>
-      <div class="card"><h3><span class="cy">06</span> 趋势 · 市场 · 方向</h3><p>行业趋势、市场规模与竞争格局,落到我们公司的下一步。</p></div>
+    <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: calc(18 * var(--u));">
+      <div class="card sm"><h3><span class="cy">01</span> 政策引子</h3><p>政策密集出台,产权登记系统上线,"数据治理"成为国家级热词。</p></div>
+      <div class="card sm"><h3><span class="cy">02</span> 发问:什么叫数据治理</h3><p>用 3 个行业真实案例,给抽象概念一个具体的答案。</p></div>
+      <div class="card sm"><h3><span class="cy">03</span> 前世今生</h3><p>从 1988 到 2026,梳理数据治理近 40 年的演进脉络。</p></div>
+      <div class="card sm"><h3><span class="cy">04</span> 专有名词详解</h3><p>基础概念、要素热词、技术黑话、数据血缘、治理体系框架。</p></div>
+      <div class="card sm"><h3><span class="cy">05</span> 业务流程闭环</h3><p>从采集到交易,确权登记新政与全国交易所全景。</p></div>
+      <div class="card sm"><h3><span class="cy">06</span> 趋势与市场</h3><p>AI 原生治理、920 亿市场盘子、竞争格局与人才缺口。</p></div>
+      <div class="card sm"><h3><span class="cy">07</span> 价值延伸</h3><p>质押融资、香港 RWA × 上海 RDA、博鳌数商大会信号。</p></div>
+      <div class="card sm"><h3><span class="cy">08</span> 公司方向</h3><p>政策如何落到我们的服务商打法上。</p></div>
     </div>
   </section>
 
@@ -181,15 +213,19 @@
     <div class="kicker"><span class="no">01</span>政策动态</div>
     <h2 class="pagetitle">政策密集出台:<span class="or">数据治理</span>站上风口</h2>
     <p class="lead">数据正从"资源"变成"资产",再变成"资本" —— 每一条政策都指向同一个关键词:治理。</p>
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr);">
-      <div class="card"><h3>2019.11 四中全会</h3><p>数据首次被列为<b style="color:#ffd9a8">生产要素</b>,与土地、劳动力、资本、技术并列。</p>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: calc(18 * var(--u));">
+      <div class="card sm"><h3>2019.11 四中全会</h3><p>数据首次被列为<b style="color:#ffd9a8">生产要素</b>,与土地、劳动力、资本、技术并列。</p>
         <div class="tagrow"><span class="who">决策层:<b>国家发改委</b></span></div></div>
-      <div class="card"><h3>2022.12 "数据二十条"</h3><p>《关于构建数据基础制度更好发挥数据要素作用的意见》,提出数据产权、流通交易、收益分配、安全治理四大制度。</p>
+      <div class="card sm"><h3>2022.12 "数据二十条"</h3><p>数据产权、流通交易、收益分配、安全治理四大制度框架成型。</p>
         <div class="tagrow"><span class="who">推动者:<b>国家数据局(筹)</b></span></div></div>
-      <div class="card"><h3>2023.10 国家数据局挂牌</h3><p>统筹数据基础制度建设、资源整合共享和开发利用,数据要素市场化进入快车道。</p>
+      <div class="card sm"><h3>2023.10 国家数据局挂牌</h3><p>统筹数据基础制度建设与开发利用,数据要素市场化进入快车道。</p>
         <div class="tagrow"><span class="who cyan">首任局长:<b>刘烈宏</b></span></div></div>
-      <div class="card"><h3>2024-2026 加速落地</h3><p>数据资产入表(财政部《"暂行规定"》2024 施行)、"数据要素×"三年行动计划、可信数据空间行动计划、各地数据交易所扩容。</p>
+      <div class="card sm"><h3>2024-2025 落地加速</h3><p>数据资产入表施行、"数据要素×"三年行动、可信数据空间行动计划。</p>
         <div class="tagrow"><span class="who cyan">落地主体:<b>财政部 · 国家数据局 · 各省数据集团</b></span></div></div>
+      <div class="card sm light"><h3>2026.9.11 产权登记系统试运行</h3><p>国家数据产权登记服务系统上线,北/上/深三大交易所为首批官方登记机构,凭证全国互认、有效期 5 年,首日 56 份凭证公示。</p>
+        <div class="tagrow"><span class="who cyan">主导:<b>国家数据局</b></span></div></div>
+      <div class="card sm"><h3>2026 行业定调</h3><p>"合规强约束、治理常态化、安全全周期、价值导向化" —— 治理从后台辅助工程跃升为数字化与 AI 落地的核心基础设施。</p>
+        <div class="tagrow"><span class="who">趋势定调:<b>数据要素治理</b></span></div></div>
     </div>
   </section>
 
@@ -207,7 +243,7 @@
     <div class="kicker"><span class="no">02</span>案例一</div>
     <h2 class="pagetitle">数据孤岛:同一个客户,<span class="or">四个部门四种说法</span></h2>
     <p class="lead">某零售集团:CRM 说客户 80 万、电商后台说 120 万、会员系统说 95 万 —— 大促备货会上没人敢拍板。</p>
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(30 * var(--u));">
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(26 * var(--u));">
       <div class="card light"><h3>问题本质</h3><p>系统异构、口径不一、统计打架。数据躺在各自的"烟囱"里,谁也说服不了谁。</p></div>
       <div class="card"><h3><span class="cy">治理手段</span></h3><p>统一指标口径、统一主数据管理(MDM)、建设<b style="color:#ffd9a8">数据中台</b>,把分散的数据收拢成"一套数"。</p>
         <div class="tagrow">
@@ -216,7 +252,7 @@
           <span class="who cyan">落地者:<b>奇点云 · 张金银(原阿里数据技术负责人)</b></span>
         </div></div>
     </div>
-    <p style="margin-top: calc(28 * var(--u)); font-size: calc(24 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+    <p style="margin-top: calc(24 * var(--u)); font-size: calc(23 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
       <span style="color:#45d9ff; font-weight:700;">→ 启示:</span>数据治理的第一步,是让大家"说同一种语言"。
     </p>
   </section>
@@ -226,7 +262,7 @@
     <div class="kicker"><span class="no">02</span>案例二</div>
     <h2 class="pagetitle">数据质量:一份"脏名单"引发的<span class="or">千万级损失</span></h2>
     <p class="lead">某银行做精准营销:30% 客户电话是空号、地址残缺、同一客户重复营销 —— 转化率惨不忍睹,还招来投诉。</p>
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(30 * var(--u));">
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(26 * var(--u));">
       <div class="card light"><h3>问题本质</h3><p>数据不清洗、不校验、无质量标准。业务参与弱,治理容易变成 IT 部门的"独角戏"。</p></div>
       <div class="card"><h3><span class="cy">治理手段</span></h3><p>建立数据质量管理体系:完整性、准确性、一致性、时效性四大维度持续稽核,权责到人。</p>
         <div class="tagrow">
@@ -235,7 +271,7 @@
           <span class="who cyan">国际框架:<b>DAMA 国际 · DMBOK 数据管理知识体系</b></span>
         </div></div>
     </div>
-    <p style="margin-top: calc(28 * var(--u)); font-size: calc(24 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+    <p style="margin-top: calc(24 * var(--u)); font-size: calc(23 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
       <span style="color:#45d9ff; font-weight:700;">→ 启示:</span>垃圾进、垃圾出 —— 没有质量,数据越多越危险。
     </p>
   </section>
@@ -245,7 +281,7 @@
     <div class="kicker"><span class="no">02</span>案例三</div>
     <h2 class="pagetitle">AI 时代:脏数据直接喂出<span class="or">模型幻觉</span></h2>
     <p class="lead">某企业用内部文档训练大模型,结果 AI 引用了 5 年前的作废制度、编造不存在的流程 —— 智能助手成了"造谣机器"。</p>
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(30 * var(--u));">
+    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(26 * var(--u));">
       <div class="card light"><h3>问题本质</h3><p>AI 对数据质量的要求比 BI 时代更高:脏数据 → 模型幻觉与偏见,治理不到位,AI 无法落地。</p></div>
       <div class="card"><h3><span class="cy">治理手段</span></h3><p>高质量数据集建设、数据清洗/标注/质检流水线、数据血缘追踪、伦理与合规审查。</p>
         <div class="tagrow">
@@ -254,7 +290,7 @@
           <span class="who cyan">国内实践:<b>百度智能云 · 海天瑞声 · 数据堂</b></span>
         </div></div>
     </div>
-    <p style="margin-top: calc(28 * var(--u)); font-size: calc(24 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+    <p style="margin-top: calc(24 * var(--u)); font-size: calc(23 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
       <span style="color:#45d9ff; font-weight:700;">→ 启示:</span>模数共振 —— AI 的上限,取决于数据治理的下限。
     </p>
   </section>
@@ -263,15 +299,15 @@
   <section class="slide">
     <div class="kicker"><span class="no">02</span>小结</div>
     <h2 class="pagetitle">所以,什么叫<span class="cy">数据治理</span>?</h2>
-    <div class="card" style="margin-top: calc(36 * var(--u)); padding: calc(40 * var(--u)) calc(48 * var(--u));">
-      <p style="font-size: calc(30 * var(--u)); line-height: 1.9; color: #eaf6ff; letter-spacing: 1px;">
+    <div class="card" style="margin-top: calc(30 * var(--u)); padding: calc(34 * var(--u)) calc(44 * var(--u));">
+      <p style="font-size: calc(29 * var(--u)); line-height: 1.85; color: #eaf6ff; letter-spacing: 1px;">
         数据治理 = 对数据<b style="color:#45d9ff">全生命周期</b>的<b style="color:#45d9ff">制度、标准与流程</b>:
         让数据<b style="color:#ffa53e">找得到、看得懂、信得过、管得住、用得上</b>。<br>
-        <span style="font-size: calc(24 * var(--u)); color: #a8cfee;">—— 它不是一次性项目,而是持续运营;不是 IT 独角戏,而是业务与技术的共同责任。</span>
+        <span style="font-size: calc(23 * var(--u)); color: #a8cfee;">—— 它不是一次性项目,而是持续运营;不是 IT 独角戏,而是业务与技术的共同责任。</span>
       </p>
     </div>
-    <div class="grid" style="grid-template-columns: repeat(4, 1fr); margin-top: calc(26 * var(--u));">
-      <div class="card" style="text-align:center;"><h3 class="cy" style="color:#45d9ff;">统一口径</h3><p style="margin-top:6px;">破孤岛</p></div>
+    <div class="grid" style="grid-template-columns: repeat(4, 1fr); margin-top: calc(24 * var(--u));">
+      <div class="card" style="text-align:center;"><h3 style="color:#45d9ff;">统一口径</h3><p style="margin-top:6px;">破孤岛</p></div>
       <div class="card" style="text-align:center;"><h3 style="color:#45d9ff;">保证质量</h3><p style="margin-top:6px;">除脏数</p></div>
       <div class="card" style="text-align:center;"><h3 style="color:#45d9ff;">安全合规</h3><p style="margin-top:6px;">守底线</p></div>
       <div class="card" style="text-align:center;"><h3 style="color:#ffa53e;">释放价值</h3><p style="margin-top:6px;">成资产</p></div>
@@ -290,13 +326,13 @@
       <div class="tnode"><div class="yr">2022</div><p>"数据二十条"发布,数据基础制度框架成型</p></div>
       <div class="tnode"><div class="yr">2023</div><p>国家数据局挂牌成立</p></div>
       <div class="tnode"><div class="yr">2024</div><p>数据资产入表施行,"数据要素×"行动启动</p></div>
-      <div class="tnode"><div class="yr">2025</div><p>公共数据授权运营全面铺开,国家数据基础设施建设提速,可信数据空间行动计划落地</p></div>
-      <div class="tnode"><div class="yr">2026</div><p>数据要素市场迈向全国统一大市场,AI 与数据治理深度融合,行业进入价值兑现期</p></div>
+      <div class="tnode"><div class="yr">2025</div><p>公共数据授权运营铺开,可信数据空间行动计划落地</p></div>
+      <div class="tnode"><div class="yr">2026</div><p>产权登记系统试运行,迈向全国统一数据要素大市场,进入价值兑现期</p></div>
     </div>
-    <div class="card" style="margin-top: calc(40 * var(--u));">
-      <p style="font-size: calc(24 * var(--u)); line-height: 1.8;">
+    <div class="card" style="margin-top: calc(34 * var(--u));">
+      <p style="font-size: calc(23 * var(--u)); line-height: 1.75;">
         <span style="color:#45d9ff; font-weight:700;">演进主线:</span>
-        管好质量(IT 内部事)→ 管通全局(数据中台)→ 管成资产(数据要素市场化)。
+        管好质量(IT 内部事)→ 管通全局(数据中台)→ 管成资产(数据要素市场化)→ 管出价值(登记确权、流通交易、AI 就绪)。
         每一次跃迁,治理的边界都在扩大,价值都在翻倍。
       </p>
       <div class="tagrow">
@@ -311,18 +347,18 @@
   <section class="slide">
     <div class="kicker"><span class="no">04</span>专有名词 · 基础篇</div>
     <h2 class="pagetitle">这些词,你必须<span class="cy">听得懂</span></h2>
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-top: calc(30 * var(--u));">
-      <div class="card"><h3><span class="cy">数据中台</span></h3><p>把分散数据收拢、加工、服务化的中枢平台。让业务像用水电一样用数据。</p>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: calc(18 * var(--u)); margin-top: calc(26 * var(--u));">
+      <div class="card sm"><h3><span class="cy">数据中台</span></h3><p>把分散数据收拢、加工、服务化的中枢平台。让业务像用水电一样用数据。</p>
         <div class="tagrow"><span class="who">阿里<b>张建锋</b>提出</span></div></div>
-      <div class="card"><h3><span class="cy">数据仓库</span></h3><p>面向分析的结构化数据集合(Oracle/Teradata 时代 → 现代:Teradata、Greenplum)。</p>
+      <div class="card sm"><h3><span class="cy">数据仓库</span></h3><p>面向分析的结构化数据集合(Oracle/Teradata 时代 → 现代:Teradata、Greenplum)。</p>
         <div class="tagrow"><span class="who cyan">之父:<b>Bill Inmon</b></span></div></div>
-      <div class="card"><h3><span class="cy">数据湖</span></h3><p>原始格式数据的低成本存储池,先存后用。现代演进为"湖仓一体"。</p>
+      <div class="card sm"><h3><span class="cy">数据湖</span></h3><p>原始格式数据的低成本存储池,先存后用。现代演进为"湖仓一体"。</p>
         <div class="tagrow"><span class="who cyan"><b>Databricks · 辛湜(Reynold Xin)</b></span></div></div>
-      <div class="card"><h3><span class="cy">主数据管理 MDM</span></h3><p>统一"客户/商品/组织"等核心实体的唯一权威版本,解决"一物多码"。</p>
+      <div class="card sm"><h3><span class="cy">主数据管理 MDM</span></h3><p>统一"客户/商品/组织"等核心实体的唯一权威版本,解决"一物多码"。</p>
         <div class="tagrow"><span class="who">厂商:<b>Informatica · SAP</b></span></div></div>
-      <div class="card"><h3><span class="cy">数据血缘</span></h3><p>记录数据从哪来、经过哪些加工、到哪去 —— 出问题可溯源,改字段知影响。</p>
+      <div class="card sm"><h3><span class="cy">数据血缘</span></h3><p>记录数据从哪来、经过哪些加工、到哪去 —— 出问题可溯源,改字段知影响(后页详解)。</p>
         <div class="tagrow"><span class="who cyan">工具:<b>Apache Atlas · DataHub</b></span></div></div>
-      <div class="card"><h3><span class="cy">DAMA-DMBOK</span></h3><p>国际数据管理协会的知识体系,数据治理的"行业圣经"(CDGA/CDGP 认证)。</p>
+      <div class="card sm"><h3><span class="cy">DAMA-DMBOK</span></h3><p>国际数据管理协会的知识体系,数据治理的"行业圣经"(CDGA/CDGP 认证)。</p>
         <div class="tagrow"><span class="who">机构:<b>DAMA 国际</b></span></div></div>
     </div>
   </section>
@@ -331,23 +367,157 @@
   <section class="slide">
     <div class="kicker"><span class="no">04</span>专有名词 · 要素篇</div>
     <h2 class="pagetitle">政策热词背后的<span class="or">生意逻辑</span></h2>
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-top: calc(30 * var(--u));">
-      <div class="card"><h3><span class="or">数据要素</span></h3><p>数据作为生产要素参与价值创造与分配,是继土地、劳动力、资本、技术之后的"第五要素"。</p>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: calc(18 * var(--u)); margin-top: calc(26 * var(--u));">
+      <div class="card sm"><h3><span class="or">数据要素</span></h3><p>数据作为生产要素参与价值创造与分配,是继土地、劳动力、资本、技术之后的"第五要素"。</p>
         <div class="tagrow"><span class="who">提出:<b>中央深改委(2020)</b></span></div></div>
-      <div class="card"><h3><span class="or">数据资产入表</span></h3><p>2024 年起,合规的数据资源可计入企业资产负债表,从"费用"变"资产"。</p>
+      <div class="card sm"><h3><span class="or">数据资产入表</span></h3><p>2024 年起,合规的数据资源可计入企业资产负债表,从"费用"变"资产"。</p>
         <div class="tagrow"><span class="who">规则:<b>财政部《暂行规定》</b></span></div></div>
-      <div class="card"><h3><span class="or">可信数据空间</span></h3><p>多主体间"可用不可见"的数据流通环境,解决"不敢共享、不愿共享"。</p>
+      <div class="card sm"><h3><span class="or">可信数据空间</span></h3><p>多主体间"可用不可见"的数据流通环境,解决"不敢共享、不愿共享"。</p>
         <div class="tagrow"><span class="who cyan">推动:<b>国家数据局行动计划(2024)</b></span></div></div>
-      <div class="card"><h3><span class="or">隐私计算</span></h3><p>多方安全计算/联邦学习:数据不动模型动,实现"可用不可见"。</p>
+      <div class="card sm"><h3><span class="or">隐私计算</span></h3><p>多方安全计算/联邦学习:数据不动模型动,实现"可用不可见"。</p>
         <div class="tagrow"><span class="who"><b>蚂蚁隐语 · 富数科技 · 蓝象智联</b></span></div></div>
-      <div class="card"><h3><span class="or">数据交易所</span></h3><p>数据产品挂牌、撮合、结算的基础设施:上海/深圳/贵阳/北京国际大数据交易所。</p>
-        <div class="tagrow"><span class="who cyan">头部:<b>上海数据集团 · 贵阳大数据交易所</b></span></div></div>
-      <div class="card"><h3><span class="or">数据经纪人</span></h3><p>连接供需双方的中介角色:找数据、谈合规、做交付,广州/深圳已试点授牌。</p>
+      <div class="card sm"><h3><span class="or">数据交易所</span></h3><p>数据产品挂牌、撮合、结算的基础设施 —— 全国十所错位布局(后页详解)。</p>
+        <div class="tagrow"><span class="who cyan">头部:<b>上海数据交易所 · 贵阳大数据交易所</b></span></div></div>
+      <div class="card sm"><h3><span class="or">数据经纪人</span></h3><p>连接供需双方的中介角色:找数据、谈合规、做交付,广州/深圳已试点授牌。</p>
         <div class="tagrow"><span class="who">试点:<b>广东省(2021 起)</b></span></div></div>
     </div>
   </section>
 
-  <!-- 12 业务闭环 -->
+  <!-- 12 专有名词三 技术黑话 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">04</span>专有名词 · 技术黑话篇</div>
+    <h2 class="pagetitle">17 个核心黑话:<span class="cy">听懂</span>才敢说自己是数据人</h2>
+    <p class="lead">三类黑话覆盖"定义 → 处理 → 交付" —— 行内说法:看懂 10 个以上,就算"老数据人"。</p>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: calc(18 * var(--u)); margin-top: calc(24 * var(--u));">
+      <div class="card sm">
+        <h3><span class="cy">基础概念</span> · 定义数据</h3>
+        <div class="pills">
+          <span class="pill"><b>MDM</b><i>主数据管理</i></span>
+          <span class="pill"><b>Metadata</b><i>元数据</i></span>
+          <span class="pill"><b>Data Lineage</b><i>数据血缘</i></span>
+          <span class="pill"><b>Data Catalog</b><i>数据目录</i></span>
+        </div>
+        <p>回答"数据是什么、从哪来、到哪去",是治理的词汇地基。</p>
+      </div>
+      <div class="card sm">
+        <h3><span class="cy">处理与存储</span> · 加工数据</h3>
+        <div class="pills">
+          <span class="pill"><b>ETL</b><i>抽取转换加载</i></span>
+          <span class="pill"><b>ELT</b><i>先装载后转换</i></span>
+          <span class="pill"><b>OLTP</b><i>在线事务</i></span>
+          <span class="pill"><b>OLAP</b><i>在线分析</i></span>
+          <span class="pill"><b>CDC</b><i>变更数据捕获</i></span>
+        </div>
+        <p>数据怎么进仓库、怎么分层加工 —— 数仓工程师的日常。</p>
+      </div>
+      <div class="card sm">
+        <h3><span class="cy">应用与交付</span> · 输出数据</h3>
+        <div class="pills">
+          <span class="pill"><b>BI</b><i>商业智能</i></span>
+          <span class="pill"><b>API</b><i>接口服务</i></span>
+          <span class="pill"><b>SQL</b><i>查询语言</i></span>
+          <span class="pill"><b>SLA</b><i>服务等级协议</i></span>
+        </div>
+        <p>数据最终以报表、接口和履约承诺的形式交付业务方。</p>
+      </div>
+    </div>
+    <p style="margin-top: calc(22 * var(--u)); font-size: calc(21 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">数仓分层记忆法</span>(越往上越贴近业务):
+    </p>
+    <div class="flow" style="margin-top: calc(12 * var(--u));">
+      <div class="fstep"><div class="fn">L1</div><h4>ODS 贴源层</h4><p>原样入库,不做加工</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">L2</div><h4>DWD 明细层</h4><p>清洗、标准化、明细事实</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">L3</div><h4>DWS 汇总层</h4><p>轻度聚合,面向主题</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">L4</div><h4>ADS 应用层</h4><p>面向报表与业务场景</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">+</div><h4>DM 数据集市</h4><p>按部门/业务切分的小集市</p></div>
+    </div>
+    <div class="tagrow" style="margin-top: calc(16 * var(--u));">
+      <span class="who cyan">素材推荐工具:<b>FineDataLink · 帆软(数据集成/治理平台)</b></span>
+    </div>
+  </section>
+
+  <!-- 13 数据血缘详解 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">04</span>专有名词 · 数据血缘</div>
+    <h2 class="pagetitle">数据血缘:给数据建一本<span class="cy">"族谱"</span></h2>
+    <div class="card" style="margin-top: calc(22 * var(--u)); padding: calc(20 * var(--u)) calc(30 * var(--u));">
+      <p style="font-size: calc(23 * var(--u)); line-height: 1.6; color: #eaf6ff;">
+        记录数据从<b style="color:#45d9ff">产生、加工、流转到输出</b>的全链路关系 —— 出问题可追溯源头,改字段可知影响范围。
+      </p>
+      <div class="pills" style="margin-top: calc(10 * var(--u));">
+        <span class="pill"><b>可双向追溯</b></span>
+        <span class="pill"><b>全链路覆盖</b></span>
+        <span class="pill"><b>动态可更新</b></span>
+        <span class="pill"><b>关系可量化</b></span>
+      </div>
+    </div>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(20 * var(--u));">
+      <div class="card sm"><h3><span class="cy">四大核心价值</span></h3>
+        <p>① 支撑数据治理:自动摸清数据家底<br>② 提升数据质量:快速定位脏数据源头<br>③ 保障数据安全:敏感数据流向全程可追踪<br>④ 业务增值:影响分析支撑变更决策</p></div>
+      <div class="card sm"><h3><span class="cy">四大典型场景</span></h3>
+        <p>① 数据问题排查:指标异常,沿血缘向上游追因<br>② 数据资产目录:自动生成资产全景地图<br>③ 合规审计:证明每一份数据来源合法<br>④ 指标一致性校验:同源同口径,杜绝"数出多门"</p></div>
+    </div>
+    <p style="margin-top: calc(20 * var(--u)); font-size: calc(21 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#ffa53e; font-weight:700;">四种构建技术</span>(各有优劣,常组合使用):
+    </p>
+    <div class="flow" style="margin-top: calc(12 * var(--u));">
+      <div class="fstep"><div class="fn">技术一</div><h4>规则解析</h4><p>解析 SQL/调度脚本,静态准确</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">技术二</div><h4>日志采集</h4><p>抓取任务运行日志,覆盖广</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">技术三</div><h4>机器学习</h4><p>自动推断隐含数据关系</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">技术四</div><h4>节点植入探针</h4><p>埋点采集,实时最精确</p></div>
+    </div>
+    <div class="tagrow" style="margin-top: calc(16 * var(--u));">
+      <span class="who cyan">工具:<b>Apache Atlas</b></span>
+      <span class="who cyan"><b>DataHub</b></span>
+      <span class="who cyan"><b>FineDataLink</b></span>
+    </div>
+  </section>
+
+  <!-- 14 治理体系框架 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">04</span>专有名词 · 治理体系</div>
+    <h2 class="pagetitle">治理的"操作系统":<span class="cy">八大要素</span> × <span class="or">六大模块</span></h2>
+    <p class="lead">两大主流框架互为表里 —— 八大要素定"做什么",六大模块定"怎么管"。</p>
+    <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: calc(14 * var(--u)); margin-top: calc(22 * var(--u));">
+      <div class="card sm"><h3><span class="cy">01</span> 数据战略</h3><p>业务对齐、价值驱动,明确组织与资源投入</p></div>
+      <div class="card sm"><h3><span class="cy">02</span> 数据架构</h3><p>采集到销毁全生命周期,ETL/API 集成</p></div>
+      <div class="card sm"><h3><span class="cy">03</span> 数据标准</h3><p>元数据规范、分类体系、数据模型</p></div>
+      <div class="card sm"><h3><span class="cy">04</span> 数据资产</h3><p>数据服务与分析挖掘,价值最大化</p></div>
+      <div class="card sm"><h3><span class="or">05</span> 数据质量</h3><p>完整/准确/一致,合格率目标 ≥98%</p></div>
+      <div class="card sm"><h3><span class="or">06</span> 数据安全</h3><p>GDPR/数据安全法合规,访问控制+加密脱敏</p></div>
+      <div class="card sm"><h3><span class="or">07</span> 数据文化</h3><p>培训+激励,把治理变成全员习惯</p></div>
+      <div class="card sm"><h3><span class="or">08</span> 数据管控</h3><p>审计与持续改进,让治理真正落地</p></div>
+    </div>
+    <p style="margin-top: calc(22 * var(--u)); font-size: calc(21 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">六大核心模块</span>(从顶层规划到全周期管控,形成治理闭环):
+    </p>
+    <div class="flow" style="margin-top: calc(12 * var(--u));">
+      <div class="fstep"><div class="fn">M1</div><h4>战略与组织架构</h4><p>顶层设计,定方向</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">M2</div><h4>制度与流程</h4><p>权责到人,有章可循</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">M3</div><h4>标准与元数据</h4><p>统一语言,口径一致</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">M4</div><h4>质量管理</h4><p>持续稽核,闭环整改</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">M5</div><h4>安全管理</h4><p>分级防护,合规兜底</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">M6</div><h4>生命周期管理</h4><p>采集到销毁全程管控</p></div>
+    </div>
+    <div class="tagrow" style="margin-top: calc(16 * var(--u)); align-items: center;">
+      <span class="pill"><b>硬 KPI</b><i>质量合格率 ≥ 98% · 安全事件 0 · 合规获得率 100%</i></span>
+      <span class="who cyan">知识体系:<b>DAMA 国际 · DMBOK</b></span>
+    </div>
+  </section>
+
+  <!-- 15 业务闭环 -->
   <section class="slide">
     <div class="kicker"><span class="no">05</span>业务流程闭环</div>
     <h2 class="pagetitle">数据的一生:从<span class="cy">采集</span>到<span class="or">交易</span></h2>
@@ -361,7 +531,7 @@
       <div class="farr"></div>
       <div class="fstep"><div class="fn">STEP 4</div><h4>确权合规</h4><p>权属认定 / 授权 / 合规审查</p><span class="who"><b>律师事务所 · 数据合规评估机构</b></span></div>
     </div>
-    <div class="flow" style="margin-top: calc(20 * var(--u));">
+    <div class="flow" style="margin-top: calc(18 * var(--u));">
       <div class="fstep"><div class="fn">STEP 5</div><h4>资产入表</h4><p>成本归集 / 价值评估 / 会计处理</p><span class="who"><b>四大所 · 中企华评估</b></span></div>
       <div class="farr"></div>
       <div class="fstep"><div class="fn">STEP 6</div><h4>挂牌交易</h4><p>数据产品化 / 交易所挂牌 / 撮合</p><span class="who"><b>上海/深圳数据交易所</b></span></div>
@@ -370,52 +540,184 @@
       <div class="farr"></div>
       <div class="fstep"><div class="fn">LOOP</div><h4>反哺闭环</h4><p>应用产生新数据,回到 STEP 1</p><span class="who cyan"><b>价值飞轮</b></span></div>
     </div>
+    <p style="margin-top: calc(24 * var(--u)); font-size: calc(22 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">→ 关键节点:</span>STEP 4-6 的确权、入表、交易是 2024-2026 年政策打开的新环节,接下来三页逐一拆解。
+    </p>
   </section>
 
-  <!-- 13 行业趋势 -->
+  <!-- 16 数据产权登记 -->
   <section class="slide">
-    <div class="kicker"><span class="no">06</span>行业趋势</div>
-    <h2 class="pagetitle">未来 3 年,治理<span class="cy">往哪走</span>?</h2>
-    <div class="grid" style="grid-template-columns: repeat(2, 1fr); margin-top: calc(30 * var(--u));">
-      <div class="card"><h3><span class="cy">趋势一 · AI 驱动治理</span></h3><p>用大模型自动做数据分类、打标、血缘解析与质量稽核,"治理自动化"成为标配。</p>
-        <div class="tagrow"><span class="who"><b>Collibra · Alation(国际)</b> <b>阿里 DataWorks(国内)</b></span></div></div>
-      <div class="card"><h3><span class="cy">趋势二 · Data Fabric / Mesh</span></h3><p>从"集中式中台"走向"分布式数据架构",逻辑统一、物理分散。</p>
-        <div class="tagrow"><span class="who">提出:<b>Gartner · Zhamak Dehghani</b></span></div></div>
-      <div class="card"><h3><span class="or">趋势三 · 数据资产化加速</span></h3><p>入表范围扩大、质押融资落地、数据信托等金融创新出现,数据真正成为"硬通货"。</p>
-        <div class="tagrow"><span class="who cyan">实践:<b>银行数据资产质押 · 各地数据集团</b></span></div></div>
-      <div class="card"><h3><span class="or">趋势四 · 治理即服务(DGaaS)</span></h3><p>中小企业无需自建团队,按订阅购买治理能力;合规与治理外包成为新赛道。</p>
-        <div class="tagrow"><span class="who cyan">方向:<b>SaaS 化治理工具 + 治理咨询</b></span></div></div>
+    <div class="kicker"><span class="no">05</span>业务闭环 · 确权登记</div>
+    <h2 class="pagetitle">2026.9.11 重磅:<span class="or">国家数据产权登记服务系统</span>试运行</h2>
+    <p class="lead">我国正式开展数据产权登记 —— 一次登记、全国通用,数据资产评估从"企业自证"迈入"国家背书"阶段。</p>
+    <div class="card light" style="margin-top: calc(20 * var(--u)); padding: calc(16 * var(--u)) calc(26 * var(--u));">
+      <p style="font-size: calc(20 * var(--u)); line-height: 1.55; color: #14508c;">
+        <b style="color:#0a3a75;">北京、上海、深圳</b>三大交易所纳入全国登记机构目录;首日 <b style="color:#0a3a75;">56 份</b>登记凭证公示,覆盖信息技术、医疗卫生、科学研究;凭证<b style="color:#0a3a75;">全国互认、有效期一般 5 年</b>。
+      </p>
+      <div class="tagrow" style="margin-top: calc(8 * var(--u));">
+        <span class="who cyan">主导:<b>国家数据局</b></span>
+        <span class="who">登记机构:<b>北京国际大数据交易所</b></span>
+        <span class="who"><b>上海数据交易所</b></span>
+        <span class="who"><b>深圳数据交易所</b></span>
+      </div>
+    </div>
+    <p style="margin-top: calc(18 * var(--u)); font-size: calc(20 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">登记七步流程</span>(解决了此前标准不一、互认不足的问题):
+    </p>
+    <div class="flow" style="margin-top: calc(10 * var(--u));">
+      <div class="fstep"><div class="fn">①</div><h4>申请</h4><p>实名提交材料</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">②</div><h4>受理</h4><p>登记机构受理</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">③</div><h4>审查</h4><p>合规性审查</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">④</div><h4>公示</h4><p>接受社会监督</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">⑤</div><h4>异议处理</h4><p>第三方异议复核</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">⑥</div><h4>信息存证</h4><p>存证固定证据</p></div>
+      <div class="farr"></div>
+      <div class="fstep"><div class="fn">⑦</div><h4>凭证核发</h4><p>获得登记凭证</p></div>
+    </div>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(18 * var(--u));">
+      <div class="card sm"><h3><span class="cy">个人也能参与</span></h3>
+        <p>实名后<b style="color:#ffd9a8">免费申请</b>,门槛仅 1000 条记录或 100 兆数据(母婴店选品表、钢琴教学易错点都可登记);登记后可挂牌授权给企业使用、获得收益;2026.9.1 起企业数据需入账盘点。</p></div>
+      <div class="card sm warn"><h3>三条红线(务必避开)</h3>
+        <p>① 原始个人信息(姓名/身份证/手机号)不能卖<br>② 先交钱、买名额、拉人头的数据项目=骗子<br>③ 只认官方平台和持牌交易所,别信"内部通道"</p></div>
     </div>
   </section>
 
-  <!-- 14 市场分析 -->
+  <!-- 17 产权登记 vs 资产登记 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">05</span>业务闭环 · 确权登记</div>
+    <h2 class="pagetitle">一句话分清:<span class="cy">产权登记</span> vs <span class="or">资产登记</span></h2>
+    <p class="lead">前者是数据的"身份证",后者是数据的"价值档案"。</p>
+    <div class="duo">
+      <div class="vs">VS</div>
+      <div class="card"><h3 class="cy" style="color:#45d9ff;">产权登记 · 数据的"身份证"</h3>
+        <p style="line-height: 1.75;">
+          <b style="color:#45d9ff;">主导:</b>国家数据局 · 全国统一标准<br>
+          <b style="color:#45d9ff;">作用:</b>确定归属和权利,法律背书强<br>
+          <b style="color:#45d9ff;">用途:</b>跨地区流通、跨境贸易、融资合作、诉讼确权<br>
+          <b style="color:#45d9ff;">适合:</b>业务覆盖全国或大型企业集团
+        </p>
+        <div class="tagrow"><span class="who cyan">主导机构:<b>国家数据局</b></span></div></div>
+      <div class="card"><h3 class="or" style="color:#ffa53e;">资产登记 · 数据的"价值档案"</h3>
+        <p style="line-height: 1.75;">
+          <b style="color:#ffa53e;">主导:</b>地方交易所或第三方机构 · 流程灵活<br>
+          <b style="color:#ffa53e;">作用:</b>盘点、估值、财务入账<br>
+          <b style="color:#ffa53e;">用途:</b>企业内部盘点、估值、入表、本地交易<br>
+          <b style="color:#ffa53e;">适合:</b>初创和中小企业摸清数据家底
+        </p>
+        <div class="tagrow"><span class="who">主导机构:<b>各地数据交易所</b></span></div></div>
+    </div>
+    <div class="card" style="margin-top: calc(24 * var(--u)); text-align: center; background: linear-gradient(90deg, rgba(10,40,80,.85), rgba(12,50,95,.75));">
+      <p style="margin: 0; font-size: calc(25 * var(--u)); font-weight: 700; letter-spacing: 1px;">
+        核心关系:先确权,再估值入表 —— <span style="color:#45d9ff;">产权登记是资产入表的底层地基</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- 18 数据交易所全景 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">05</span>业务闭环 · 交易设施</div>
+    <h2 class="pagetitle">全国<span class="cy">十大数据交易所</span>:区域错位布局</h2>
+    <p class="lead">从 2015 贵阳首家到 2024 安徽揭牌 —— 十家交易所按区域错位,分别承担跨境、产业、合规等不同定位。</p>
+    <div class="grid" style="grid-template-columns: repeat(4, 1fr); gap: calc(13 * var(--u)); margin-top: calc(20 * var(--u));">
+      <div class="card sm"><h3>贵阳 <span class="cy" style="font-size:calc(16*var(--u));">2015.4</span></h3><p>全国首家 · 大数据交易先行者,政务民生数据基础好</p></div>
+      <div class="card sm"><h3>浙江杭州 <span class="cy" style="font-size:calc(16*var(--u));">2016</span></h3><p>长三角南翼枢纽 · 电商、工业互联网、公共数据授权运营</p></div>
+      <div class="card sm"><h3>北京国际 <span class="cy" style="font-size:calc(16*var(--u));">2021.3</span></h3><p>唯一带"国际" · 跨境数据流通、确权登记</p></div>
+      <div class="card sm"><h3>上海 <span class="cy" style="font-size:calc(16*var(--u));">2021.11</span></h3><p>全国标杆 · 数商生态最强、合规标准最高</p></div>
+      <div class="card sm"><h3>广州 <span class="cy" style="font-size:calc(16*var(--u));">2022.9</span></h3><p>南沙自贸区 · 工业、医疗、公共数据</p></div>
+      <div class="card sm"><h3>深圳 <span class="cy" style="font-size:calc(16*var(--u));">2022.11</span></h3><p>大湾区交易中心 · 交易规模领先、跨境数据活跃</p></div>
+      <div class="card sm"><h3>重庆西部 <span class="cy" style="font-size:calc(16*var(--u));">2022</span></h3><p>成渝双城经济圈 · 汽车、智慧城市</p></div>
+      <div class="card sm"><h3>湖南 <span class="cy" style="font-size:calc(16*var(--u));">2022</span></h3><p>辐射华中五省 · 工程机械产业数据</p></div>
+      <div class="card sm"><h3>郑州 <span class="cy" style="font-size:calc(16*var(--u));">2022</span></h3><p>中原枢纽 · 农业、遥感测绘、交通物流</p></div>
+      <div class="card sm"><h3>北方(天津) <span class="cy" style="font-size:calc(16*var(--u));">—</span></h3><p>北方流通节点 · 企业积分、数据资产上所通道</p></div>
+      <div class="card sm"><h3>安徽 <span class="cy" style="font-size:calc(16*var(--u));">2024.9</span></h3><p>合肥高新区 · 对接长三角数据流通通道</p></div>
+      <div class="card sm light"><h3>布局逻辑</h3><p>区域错位:跨境看北京/深圳,产业看广深浙湘豫,合规标杆看上海</p></div>
+    </div>
+    <div class="tagrow" style="margin-top: calc(18 * var(--u));">
+      <span class="who cyan">头部:<b>上海数据交易所</b></span>
+      <span class="who cyan"><b>深圳数据交易所</b></span>
+      <span class="who cyan"><b>北京国际大数据交易所</b></span>
+      <span class="who cyan"><b>贵阳大数据交易所</b></span>
+    </div>
+  </section>
+
+  <!-- 19 行业趋势 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">06</span>行业趋势</div>
+    <h2 class="pagetitle">2026:从"IT 管控"转向<span class="cy">数据要素治理</span></h2>
+    <p class="lead">合规强约束、治理常态化、安全全周期、价值导向化 —— 未来 3 年四大趋势。</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(24 * var(--u));">
+      <div class="card sm"><h3><span class="cy">趋势一 · AI 原生治理成主流</span></h3><p>AI for DG 与"AI 就绪数据"(AI-Ready Data)成行业共识:自动盘点、质量智能校验、异常检测、血缘生成 —— 人工碎片化模式加速淘汰。</p>
+        <div class="tagrow"><span class="who"><b>Collibra · Alation</b></span><span class="who">国内:<b>阿里 DataWorks</b></span></div></div>
+      <div class="card sm"><h3><span class="cy">趋势二 · 轻量化与场景化</span></h3><p>从"重资产、长周期"转向轻量敏捷:SaaS 化、低代码/无代码治理兴起;方案从通用化转向行业化、场景化定制。</p>
+        <div class="tagrow"><span class="who cyan">方向:<b>DGaaS · SaaS 化治理工具</b></span></div></div>
+      <div class="card sm"><h3><span class="or">趋势三 · 信创合规成标配</span></h3><p>自主可控要求提高,全栈信创适配成为政企选型的硬性标准 —— 国产基础软件迎来确定性机会。</p>
+        <div class="tagrow"><span class="who cyan">信创代表:<b>华为云 · 星环科技</b></span></div></div>
+      <div class="card sm"><h3><span class="or">趋势四 · 从成本中心到价值引擎</span></h3><p>治理成果向"数据资产化、产品化"转化:资产盘点、价值评估、合规流通等增值服务需求快速增长。</p>
+        <div class="tagrow"><span class="who">生态:<b>各地数据集团 · 交易所数商</b></span></div></div>
+    </div>
+    <p style="margin-top: calc(20 * var(--u)); font-size: calc(22 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">→ 对我们的启示:</span>治理服务的交付方式要"产品化+场景化",选型合作要"信创友好",价值主张要"帮客户变现"。
+    </p>
+  </section>
+
+  <!-- 20 市场分析 -->
   <section class="slide">
     <div class="kicker"><span class="no">06</span>市场分析</div>
     <h2 class="pagetitle">盘子有多大?<span class="or">谁在分蛋糕</span>?</h2>
+    <p class="lead">增长三引擎:数据要素市场化改革 × 大模型对高质量数据的刚性拉动 × 资产入表制度加速落地。</p>
     <div class="bars">
-      <div class="brow"><div class="blab">中国数据要素市场(2025)</div><div class="btrack"><div class="bfill" style="width:78%"></div></div><div class="bval">约 2000 亿+</div></div>
-      <div class="brow"><div class="blab">数据治理细分(2025)</div><div class="btrack"><div class="bfill" style="width:42%"></div></div><div class="bval">约 300 亿+</div></div>
-      <div class="brow"><div class="blab">年复合增长率</div><div class="btrack"><div class="bfill or" style="width:32%"></div></div><div class="bval or">25%+ (CAGR)</div></div>
-      <div class="brow"><div class="blab">AI 数据服务增速</div><div class="btrack"><div class="bfill or" style="width:48%"></div></div><div class="bval or">35%+ (CAGR)</div></div>
+      <div class="brow"><div class="blab">2026 数据治理市场规模(广义)</div><div class="btrack"><div class="bfill" style="width:92%"></div></div><div class="bval">920 亿元+</div></div>
+      <div class="brow"><div class="blab">年增速(远高于软件行业整体)</div><div class="btrack"><div class="bfill" style="width:31%"></div></div><div class="bval">约 31.2%</div></div>
+      <div class="brow"><div class="blab">狭义治理软件市场</div><div class="btrack"><div class="bfill or" style="width:12%"></div></div><div class="bval or">约 65 亿元</div></div>
+      <div class="brow"><div class="blab">政务+金融需求合计占比</div><div class="btrack"><div class="bfill or" style="width:50%"></div></div><div class="bval or">50%+</div></div>
     </div>
-    <div class="grid" style="grid-template-columns: repeat(3, 1fr); margin-top: calc(26 * var(--u));">
-      <div class="card"><h3>平台层</h3><p>星环科技(孙元浩)、阿里 DataWorks、华为云、Databricks</p></div>
-      <div class="card"><h3>服务层</h3><p>明略科技(吴明辉)、数澜科技(甘云锋)、奇点云(张金银)、袋鼠云</p></div>
-      <div class="card"><h3>流通层</h3><p>上海/深圳数据交易所、蚂蚁隐语、富数科技、海天瑞声(训练数据)</p></div>
+    <div class="grid" style="grid-template-columns: repeat(3, 1fr); gap: calc(16 * var(--u)); margin-top: calc(22 * var(--u));">
+      <div class="card sm"><h3>平台层<span style="color:#45d9ff;"> · 云厂商主导基本盘</span></h3><p>星环科技(孙元浩)、阿里 DataWorks、华为云、Databricks</p>
+        <div class="tagrow"><span class="who cyan"><b>星环科技 · 孙元浩</b></span></div></div>
+      <div class="card sm"><h3>服务层<span style="color:#45d9ff;"> · 专业厂商深耕行业</span></h3><p>明略科技(吴明辉)、数澜科技(甘云锋)、奇点云(张金银)、袋鼠云</p>
+        <div class="tagrow"><span class="who cyan"><b>明略科技 · 吴明辉</b></span></div></div>
+      <div class="card sm"><h3>流通层<span style="color:#45d9ff;"> · 安全厂商侧翼切入</span></h3><p>上海/深圳数据交易所、蚂蚁隐语、富数科技、海天瑞声</p>
+        <div class="tagrow"><span class="who cyan"><b>蚂蚁隐语</b></span></div></div>
     </div>
-    <p style="margin-top: calc(20 * var(--u)); font-size: calc(19 * var(--u)); color: rgba(140,190,230,.65);">注:市场规模为 IDC、信通院等公开报告的综合估算口径,供趋势参考。</p>
+    <p style="margin-top: calc(16 * var(--u)); font-size: calc(18 * var(--u)); color: rgba(140,190,230,.65);">注:市场结构"服务重于软件" —— 广义治理(软件+服务+加工)空间巨大;竞争正从"功能数量"转向"治理能力"与"行业场景适配度"。</p>
     <p style="margin-top: calc(10 * var(--u)); font-size: calc(21 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
       <span style="color:#ffa53e; font-weight:700;">我们的卡位 → 服务层 + 流通层:</span>
       为其他企业提供<b style="color:#ffd9a8">数据治理、数据登记/确权、合规与入表辅导</b>等专业服务 —— 政策落地越密集,服务需求越旺盛。
     </p>
   </section>
 
-  <!-- 15 数据资产质押融资 -->
+  <!-- 21 需求分化与人才痛点 -->
   <section class="slide">
-    <div class="kicker"><span class="no">06</span>市场分析 · 延伸</div>
+    <div class="kicker"><span class="no">06</span>市场分析 · 落地现状</div>
+    <h2 class="pagetitle">需求<span class="cy">分化</span>,人才<span class="or">缺口</span>:落地的真实现状</h2>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(26 * var(--u));">
+      <div class="card sm"><h3><span class="cy">需求分化明显</span></h3>
+        <p>政务(含公共事业)+金融(银行/保险/证券)合计占比超 <b style="color:#ffd9a8">50%</b>,受强监管、强合规驱动;制造、医疗、能源紧随其后 —— 工业数据融合、隐私保护、资产入表场景。</p>
+        <div class="tagrow"><span class="who">主力行业:<b>政务 · 金融</b></span><span class="who cyan">跟随行业:<b>制造 · 医疗 · 能源</b></span></div></div>
+      <div class="card sm warn"><h3>落地痛点突出</h3>
+        <p>"<b>重建设、轻运营</b>"问题普遍;部分企业治理体系滞后:数据孤岛、数据质量薄弱、权责机制混乱 —— 制约治理效果转化,部分项目落地效果不佳。</p></div>
+      <div class="card sm"><h3><span class="or">复合型人才紧缺</span></h3>
+        <p>要求从单一技术能力(ETL/SQL)转向"<b style="color:#ffd9a8">业务+技术+合规</b>"复合型;跨部门推动能力、AI 交叉理解、数据产品化能力成市场"急缺"。</p>
+        <div class="tagrow"><span class="who cyan">岗位:<b>CDO 首席数据官</b></span><span class="who">认证:<b>DAMA CDGA/CDGP</b></span></div></div>
+      <div class="card sm"><h3><span class="or">组织定位升级</span></h3>
+        <p>从"IT 部门单打独斗"到"<b style="color:#ffd9a8">业务与 IT 深度融合</b>";治理本质是管理问题 —— 需要业务深度参与和 CFO/CIO 的战略赋能,才能实现业务价值转化。</p></div>
+    </div>
+    <p style="margin-top: calc(20 * var(--u)); font-size: calc(22 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+      <span style="color:#45d9ff; font-weight:700;">→ 对我们的启示:</span>客户"建而不会用"正是服务商机 —— 代运营、培训赋能、复合型人才输出,都是可持续收费的服务形态。
+    </p>
+  </section>
+
+  <!-- 22 数据资产质押融资 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">07</span>价值延伸 · 质押融资</div>
     <h2 class="pagetitle">数据资产不只可交易,还能<span class="or">质押贷款</span></h2>
     <p class="lead">数据资产入表后,企业可将其作为质押物向银行融资 —— 数据从"资源"到"资产"再到"信用"。</p>
-    <div class="flow" style="margin-top: calc(26 * var(--u));">
+    <div class="flow" style="margin-top: calc(22 * var(--u));">
       <div class="fstep"><div class="fn">前提</div><h4>合规治理</h4><p>数据合规、脱敏、质量达标</p><span class="who cyan"><b>治理服务商</b></span></div>
       <div class="farr"></div>
       <div class="fstep"><div class="fn">环节1</div><h4>确权登记</h4><p>交易所/登记机构出具凭证</p><span class="who"><b>上海/深圳数据交易所</b></span></div>
@@ -426,40 +728,67 @@
       <div class="farr"></div>
       <div class="fstep"><div class="fn">结果</div><h4>银行放贷</h4><p>授信放款,质押率约 10-30%</p><span class="who"><b>交行"数易贷"等</b></span></div>
     </div>
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(24 * var(--u));">
-      <div class="card"><h3><span class="cy">落地案例</span></h3><p>2024 年起,杭州、上海、山东等地首批数据资产质押贷款落地,数百万元级授信;交通银行"数易贷"以交易所登记凭证作为增信依据。</p>
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(20 * var(--u));">
+      <div class="card sm"><h3><span class="cy">落地案例</span></h3><p>2024 年起,杭州、上海、山东等地首批数据资产质押贷款落地,数百万元级授信;交通银行"数易贷"以交易所登记凭证作为增信依据。</p>
         <div class="tagrow"><span class="who">增信关键:<b>登记凭证 + 评估报告 + 数据保险</b></span></div></div>
-      <div class="card light"><h3>风控三难</h3><p>① 估值波动:数据价值随场景变,缺成熟模型;② 处置难:违约后难像房产变现;③ 合规红线:涉个人信息的数据不可质押,必须先脱敏审查。</p></div>
+      <div class="card sm light"><h3>风控三难</h3><p>① 估值波动:数据价值随场景变,缺成熟模型;② 处置难:违约后难像房产变现;③ 合规红线:涉个人信息的数据不可质押,必须先脱敏审查。</p></div>
     </div>
-    <p style="margin-top: calc(18 * var(--u)); font-size: calc(22 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
+    <p style="margin-top: calc(16 * var(--u)); font-size: calc(21 * var(--u)); color: #a8cfee; letter-spacing: 1px;">
       <span style="color:#ffa53e; font-weight:700;">服务机会:</span>质押链条上的<span style="color:#45d9ff;">治理合规、登记确权、评估辅导</span>正是我们的服务切入点 —— 银行敢不敢贷,取决于数据治理扎不扎实。
     </p>
   </section>
 
-  <!-- 16 政策与方向 -->
+  <!-- 23 前沿 RWA×RDA -->
   <section class="slide">
-    <div class="kicker"><span class="no">07</span>政策 × 我们</div>
+    <div class="kicker"><span class="no">07</span>价值延伸 · 前沿</div>
+    <h2 class="pagetitle">数字双轮:香港 <span class="or">RWA</span> × 上海 <span class="cy">RDA</span></h2>
+    <p class="lead">数据赋能资产,资产链接全球 —— 一个万亿级的新赛道。</p>
+    <div class="duo">
+      <div class="vs">+</div>
+      <div class="card"><h3 class="or" style="color:#ffa53e;">香港 RWA · 现实资产代币化</h3>
+        <p style="line-height: 1.7;">
+          房产、电站、艺术品等现实资产变成<b style="color:#ffa53e">区块链代币</b>,吸引全球资金投资;降本增效,助力人民币国际化。<br>
+          <span style="color:#a8cfee;">一句话:现实资产变"代币",找全球的钱来投资。</span>
+        </p>
+        <div class="tagrow"><span class="who">载体:<b>香港交易所</b></span></div></div>
+      <div class="card"><h3 class="cy" style="color:#45d9ff;">上海 RDA · 数据资产化</h3>
+        <p style="line-height: 1.7;">
+          企业数据变成<b style="color:#45d9ff">可交易、可融资的资产</b>,提升运营效率;案例:湖南港航靠 RDA 把船舶过闸时间缩短 1 小时。<br>
+          <span style="color:#a8cfee;">一句话:枯燥数据变"资产",让企业运转更高效。</span>
+        </p>
+        <div class="tagrow"><span class="who cyan">案例:<b>上海数据交易所 · 湖南港航集团</b></span></div></div>
+    </div>
+    <div class="card" style="margin-top: calc(22 * var(--u)); padding: calc(18 * var(--u)) calc(28 * var(--u));">
+      <p style="font-size: calc(20 * var(--u)); line-height: 1.6; color: #b9d9f2;">
+        <span style="color:#45d9ff; font-weight:700;">博鳌数商大会信号:</span>消费数据资产化必须走<span style="color:#ffa53e;">合规化</span>道路 —— 消费者的贡献理应参与价值分配;数商产业要尽快建立行业标准,杜绝乱象。对实体创业者的机会:用合规的数商模式链接消费者,重构商业分配逻辑。
+      </p>
+    </div>
+  </section>
+
+  <!-- 24 政策与方向 -->
+  <section class="slide">
+    <div class="kicker"><span class="no">08</span>政策 × 我们</div>
     <h2 class="pagetitle">下一步:<span class="cy">公司怎么接</span>?</h2>
-    <div class="grid" style="grid-template-columns: 1fr 1fr; margin-top: calc(28 * var(--u));">
-      <div class="card">
+    <div class="grid" style="grid-template-columns: 1fr 1fr; gap: calc(18 * var(--u)); margin-top: calc(24 * var(--u));">
+      <div class="card sm">
         <h3><span class="or">政策风向</span></h3>
-        <p>① 公共数据授权运营扩围,行业数据空间试点加速<br>② 数据资产入表从"鼓励"走向"常态"<br>③ 可信数据空间国家行动计划,跨区域流通破题<br>④ "数据要素×"12 大场景:工业、农业、商贸、交通、金融……</p>
+        <p>① 2026.9 国家数据产权登记系统试运行,凭证全国互认<br>② 9.1 起企业数据需入账盘点,入表从"鼓励"走向"常态"<br>③ 公共数据授权运营扩围,可信数据空间试点加速<br>④ "数据要素×"12 大场景:工业、农业、商贸、交通、金融……</p>
         <div class="tagrow"><span class="who cyan">锚点:<b>国家数据局 · 财政部</b></span></div>
       </div>
-      <div class="card">
+      <div class="card sm">
         <h3><span class="cy">我们的行动建议(服务商视角)</span></h3>
-        <p>① 治理产品化:把数据盘点、质量稽核、血缘梳理打包成标准化交付包<br>② 登记/确权服务:数据知识产权登记、数据产品登记、合规评估辅导,做客户的"登记管家"<br>③ 入表辅导:联合评估所/律所,提供"治理+合规+入表"一条龙<br>④ 卡位流通生态:对接交易所/数据集团,成为官方数商/服务商名录成员<br>⑤ 沉淀行业模板:按行业(制造/商贸/金融)沉淀治理模板,复用降本</p>
-        <div class="tagrow"><span class="who">方向:<b>技术部 · 数据治理服务线</b></span></div>
+        <p>① 治理产品化:盘点/质量稽核/血缘梳理打包标准化交付包<br>② "登记管家"服务:帮中小企业跑产权登记、入账盘点流程(9.1 新规带来的新机会)<br>③ 入表辅导:联合评估所/律所,"治理+合规+入表"一条龙<br>④ 卡位流通生态:对接交易所,进官方数商/服务商名录<br>⑤ 行业模板沉淀:制造/商贸/金融,复用降本</p>
+        <div class="tagrow"><span class="who">方向:<b>赶菜邦 · 数据治理服务线</b></span></div>
       </div>
     </div>
-    <div class="card" style="margin-top: calc(26 * var(--u)); text-align: center; background: linear-gradient(90deg, rgba(10,40,80,.85), rgba(12,50,95,.75));">
-      <p style="margin: 0; font-size: calc(28 * var(--u)); font-weight: 800; letter-spacing: 2px;">
+    <div class="card" style="margin-top: calc(22 * var(--u)); text-align: center; background: linear-gradient(90deg, rgba(10,40,80,.85), rgba(12,50,95,.75));">
+      <p style="margin: 0; font-size: calc(27 * var(--u)); font-weight: 800; letter-spacing: 2px;">
         治理不是成本,而是数据资产<span style="color:#45d9ff;">价值释放</span>的底座
       </p>
     </div>
   </section>
 
-  <!-- 16 结尾 -->
+  <!-- 25 结尾 -->
   <section class="slide cover">
     <div class="badge">THANKS</div>
     <h1 style="font-size: calc(72 * var(--u));">让数据<span class="cy">可信</span> · 让数据<span class="or">流通</span> · 让数据<span class="cy">增值</span></h1>
@@ -471,7 +800,7 @@
 
 <div class="nav">
   <button onclick="prev()">← 上一页</button>
-  <span class="idx" id="idx">1 / 16</span>
+  <span class="idx" id="idx">1 / 25</span>
   <button onclick="next()">下一页 →</button>
 </div>
 <div class="hint">键盘 ← → 或 PageUp/PageDown 翻页</div>
@@ -506,3 +835,8 @@
 </script>
 </body>
 </html>
+
+
+
+
+
