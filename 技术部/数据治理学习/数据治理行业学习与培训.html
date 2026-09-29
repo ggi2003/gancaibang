@@ -31,6 +31,27 @@
   /* 竖向时进度条贴右边缘、自上而下增长(与旋转后文字的正上方一致) */
   body.vertical .progress { left: auto; right: 0; top: 0; width: calc(4 * var(--u));
     background: linear-gradient(180deg, #1d6fd6, #45d9ff); transition: height .3s ease; }
+  /* 竖向时工具栏贴屏幕左缘(旋转后的页面底边),整体随文字方向旋转:
+     nav 原"页面右下角"→ 屏幕左下角;hint 原"页面左下角"→ 屏幕左上角 */
+  body.vertical .nav {
+    left: 0; top: 0; right: auto; bottom: auto;
+    width: 100vh; height: calc(60 * var(--u));
+    transform: translateX(calc(86 * var(--u))) rotate(90deg);
+    transform-origin: 0 0;
+    justify-content: flex-end;
+    padding-right: calc(28 * var(--u));  /* 旋转后 = 按钮组距屏幕底 28u */
+    pointer-events: none;                /* 全高条带透传点击,避免遮挡页面 */
+  }
+  body.vertical .nav button { pointer-events: auto; }  /* 仅按钮可点 */
+  body.vertical .hint {
+    left: 0; top: 0; right: auto; bottom: auto;
+    display: flex; align-items: center;
+    width: 100vh; height: calc(60 * var(--u));
+    transform: translateX(calc(86 * var(--u))) rotate(90deg);
+    transform-origin: 0 0;
+    padding-left: calc(28 * var(--u));   /* 旋转后 = 距屏幕顶 28u */
+    pointer-events: none;                /* 纯提示文字,不拦截任何点击 */
+  }
   /* 网格背景 */
   .slide::before { content: ""; position: absolute; inset: 0; pointer-events: none;
     background:
