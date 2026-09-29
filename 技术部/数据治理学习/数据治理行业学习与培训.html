@@ -49,10 +49,14 @@
   /* 公司/人物标签 */
   .who { display: inline-flex; align-items: center; gap: calc(8 * var(--u));
     padding: calc(4 * var(--u)) calc(14 * var(--u)); border-radius: calc(20 * var(--u));
-    font-size: calc(19 * var(--u)); letter-spacing: 1px; color: #ffd9a8;
-    border: 1px solid rgba(255,165,62,.45); background: rgba(60,40,10,.35); }
+    font-size: calc(19 * var(--u)); letter-spacing: 1px; color: #ffd9a8; cursor: pointer;
+    border: 1px solid rgba(255,165,62,.45); background: rgba(60,40,10,.35);
+    transition: all .2s ease; }
+  .who:hover { border-color: #ffa53e; color: #fff; box-shadow: 0 0 10px rgba(255,165,62,.5);
+    transform: translateY(-1px); }
   .who b { color: #ffa53e; font-weight: 700; }
   .who.cyan { color: #bfe6ff; border-color: rgba(69,217,255,.45); background: rgba(10,50,80,.4); }
+  .who.cyan:hover { border-color: #45d9ff; box-shadow: 0 0 10px rgba(69,217,255,.5); }
   .who.cyan b { color: #45d9ff; }
 
   /* 通用卡片 */
@@ -488,6 +492,15 @@
     if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); prev(); }
     if (e.key === 'Home') show(0);
     if (e.key === 'End') show(slides.length - 1);
+  });
+  // 公司/人物标签:点击新开页面跳转到对应三方页面(搜索实体名称)
+  document.querySelectorAll('.who').forEach(el => {
+    const text = el.innerText.replace(/\s+/g, ' ').trim();
+    el.title = '点击了解: ' + text;
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      window.open('https://www.bing.com/search?q=' + encodeURIComponent(text), '_blank');
+    });
   });
   show(0);
 </script>
